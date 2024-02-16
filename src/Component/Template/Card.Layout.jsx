@@ -4,7 +4,7 @@ import Card from "../Molecule/Card";
 const CardLayout1 = () => {
   const [productsData, setProductsData] = useState([]);
   useEffect(() => {
-    fetch("src/utilities/Products.json")
+    fetch("/utilities/Products.json")
       .then((res) => res.json())
       .then((data) => setProductsData(data.products));
   }, []);
