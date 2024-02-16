@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CardButton from "../Atoms/Button/CardButton";
 import AddToCard from "../Atoms/Button/AddToCard";
 
@@ -25,14 +25,14 @@ const Card = ({ productsData }) => {
       {productsData.map((item) => (
         <div
           key={item.product_id}
-          className="rounded  shadow-lg "
+          className="rounded-lg transition duration-500 ease-in-out shadow-xl hover:cursor-pointer hover:shadow-none	"
         >
-          <div className="main_card w-[220px] flex flex-col bg-white">
-            <div className="border-b-2">
-              <div className="flex justify-center items-center relative bg-white rounded">
+          <div className="main_card w-[220px] flex flex-col ">
+            <div className="">
+              <div className="flex justify-center rounded-lg items-center relative bg-white ">
                 <img
-                  className="rounded-t-lg"
-                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                className="rounded-t-lg"
+                  style={{ width: "100%", height: "210px", objectFit: "cover" }}
                   src={item.product_img}
                   alt=""
                 />
@@ -53,14 +53,14 @@ const Card = ({ productsData }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-5 p-2 ">
-              <div className="text-center line-clamp-2 h-[2.5rem] text-sm font-bold">
+            <div className="flex flex-col gap-3 p-2 ">
+              <div className="line-clamp-2 h-[2.5rem] text-sm font-[600] tracking-[0.025rem]">
                 {item.product_name}
               </div>
               <div className="flex justify-between items-center">
                 <div className="flex gap-2 items-center">
-                  {item.product_og_price >0&& (
-                    <div className="text-xs text-slate-600 line-through">
+                  <div className="text-xs text-slate-600 line-through">
+                  {item.product_og_price > 0 && (
                       &#8377; {item.product_og_price}
                     </div>
                   )}
