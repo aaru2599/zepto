@@ -61,7 +61,7 @@ const Card = ({ productsData }) => {
                 <div className="flex gap-2 items-center">
                   <div className="text-xs text-slate-600 line-through">
                   {item.product_og_price > 0 && (
-                      &#8377; {item.product_og_price}
+                       &#8377; {item.product_og_price}
                     </div>
                   )}
                   <div className="text-sm font-bold">
