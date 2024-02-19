@@ -27,13 +27,13 @@ const CardProto = ({ productsData }) => {
       {productsData.map((item) => (
         <div
           key={item.product_id}
-          className="rounded-lg rounded bg-white transition duration-300 ease-in-out shadow-xl hover:cursor-pointer hover:shadow-none	"
+          className="rounded-md  bg-white transition duration-300 ease-in-out  hover:cursor-pointer hover:shadow-sm	"
         >
           <div className="main_card w-[200px] flex flex-col ">
             <div className="">
-              <div className="flex justify-center shadow-md  items-center relative ">
+              <div className="flex justify-center border-b border-gray-50  items-center relative ">
                 <img
-                  className="rounded-t-lg "
+                  className="rounded-t-md "
                   style={{ width: "100%", height: "195px", objectFit: "cover" }}
                   src={item.product_img}
                   alt=""
@@ -41,7 +41,7 @@ const CardProto = ({ productsData }) => {
 
                 {discountPer(item.product_og_price, item.product_dis_price) >
                   0 && (
-                  <div className="font-bold absolute top-0 left-0 bg-[#be57cf] text-white py-0 px-1 rounded text-[0.7rem]">
+                  <div className="font-bold absolute top-0 left-0 bg-[#9e38ae] text-white py-0 px-1 rounded text-[0.7rem]">
                     {discountPer(
                       item.product_og_price,
                       item.product_dis_price
@@ -58,10 +58,10 @@ const CardProto = ({ productsData }) => {
             </div>
             <div className="flex flex-col  p-2 ">
               <div className="flex flex-col  h-[4.3rem]">
-                <div className=" line-clamp-2 text-[13px] h-[2.5rem] font-[600] tracking-[0.03rem]">
+                <div className=" line-clamp-2 text-[13px] h-[2.5rem] font-[700] tracking-[0.02rem]">
                   {item.product_name}
                 </div>
-                <div className="  rounded text-xs py-2 text-slate-600">
+                <div className=" font-semibold rounded text-xs py-2 text-slate-600">
                   {item.product_qty}
                 </div>
               </div>
@@ -75,18 +75,23 @@ const CardProto = ({ productsData }) => {
                     ""
                   )}
 
-                  <div className="text-sm font-semibold">
+                  <div className="text-sm font-bold">
                     &#8377;{item.product_dis_price}
                   </div>
                 </div>
 
+                <div>
                 {selectedCards[item.product_id] ? (
-                  <CardButtonProto count={1} />
+                 <div> <CardButtonProto count={1}  /></div>
                 ) : (
-                  <div onClick={() => handleAddToCart(item.product_id)}>
+                  <div
+                    className="transition-all duration-300 ease-in-out transform "
+                    onClick={() => handleAddToCart(item.product_id)}
+                  >
                     <AddToCardProto />
                   </div>
                 )}
+                </div>
               </div>
             </div>
           </div>
