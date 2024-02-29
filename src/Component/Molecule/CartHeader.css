@@ -1,0 +1,14 @@
+.cart-header{
+    background: url("https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.0/_next/static/media/eta_normal_lg_bg.0a1da1af.png") 0 0/ cover no-repeat ;
+    height: 4rem;
+    justify-content: center;
+    border-radius: 0;
+    padding-top: 0.5rem;
+    padding-top: 0.5rem;
+    align-items: flex-start;
+    display: flex;
+    overflow: clip;
+    text-align: center;
+
+    
+}

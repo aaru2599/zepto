@@ -1,21 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        'btnBack': '#ff3269',
-        'btnBorder':"#ffcfcf73"
+        btnBack: "#ff3269",
+        btnHover: "#ff3269c7",
+        btnBorder: "#ffcfcf73",
       },
-      size:{
-        'xsm':'1.25rem'
-      }
-      ,
+      size: {
+        xsm: "1.25rem",
+        "title-text": "0.9375rem",
+      },
+
+      screens: {
+        tablet: "640px",
+
+        laptop: "1024px",
+
+        desktop: "1280px",
+      },
     },
   },
   plugins: [],
-}
-
+};

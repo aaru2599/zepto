@@ -2,11 +2,11 @@
 
 const AddToCard = () => {
   return (
-    <div>
-      <button className="border border-btnBack text-btnBack rounded-md font-bold text-[0.7rem] h-[32px] p-1.5">
+    <>
+      <button className="w-[95px] border border-btnBack text-btnBack rounded-md font-semibold text-[0.9rem] h-[32px]  text-center">
         Add to cart
       </button>
-    </div>
+    </>
   );
 };
 
