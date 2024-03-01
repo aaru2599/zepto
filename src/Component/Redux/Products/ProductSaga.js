@@ -7,11 +7,11 @@ const getRequest = async (url) => {
         const parsedResponce = await responce.json()
         return parsedResponce
     } catch (err) {
-        //console.log(err);
+        ////console.log(err);
         return null
     }
 };
-// //console.log();
+// ////console.log();
 export function* getproducts() {
     try {
         // const productResponse = getData("")||[];
@@ -19,7 +19,7 @@ export function* getproducts() {
 
         // const productResponse= yield apiResponce
 
-        //console.log("productResponce", productResponse);
+        ////console.log("productResponce", productResponse);
         if (!productResponse) {
             yield put(getProductFailed())
             return;

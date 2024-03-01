@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 const CardLayout = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
-  console.log("cardDataCardLayout", cartData);
+  //console.log("cardDataCardLayout", cartData);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.myProducts.data);
@@ -22,9 +22,9 @@ const CardLayout = () => {
       setProductsData(products);
     }
   }, [products]);
-  //console.log("productsData");
+  ////console.log("productsData");
 
-  //console.log("productsData", productsData);
+  ////console.log("productsData", productsData);
   return (
     <div>
       <div className="flex justify-end p-4">

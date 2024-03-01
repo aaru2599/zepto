@@ -8,47 +8,57 @@ import {
   removeFromCart,
   updateCartQuantity,
 } from "../Redux/Cart/CartSlice";
-import { AlertDialog } from "@radix-ui/react-alert-dialog";
 import Modal from "../Atoms/Modal/Modal";
 // import Modal from "../Atoms/Modal/Modal";
 
 const Card = ({ productsData, cartData }) => {
   const [selectedCards, setSelectedCards] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const [productIdToRemove,setProductIdToRemove]=useState(null)
+  const [productToRemove,setProductToRemove]=useState(null)
 
   const dispatch = useDispatch();
 
-  console.log("cartData", cartData);
-  console.log("productsData", productsData);
+  //console.log("cartData", cartData);
+  //console.log("productsData", productsData);
   const onAddToCart = (product) => {
     dispatch(addToCart(product));
     setSelectedCards({ ...selectedCards, [product.product_id]: true });
   };
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
-    setConfirm(confirmed);
-    // console.log("confirmed",confirmed);
+    // setConfirm(confirmed);
+    if (confirmed) {
+      dispatch(removeFromCart(productToRemove)); // Remove the product directly
+      // Remove the product from selectedCards
+      const updatedSelectedCards = { ...selectedCards };
+      delete updatedSelectedCards[productIdToRemove];
+      setSelectedCards(updatedSelectedCards);
+    }
+    console.log("confirmed",confirmed);
   };
 
   const onClickDecrease = (productId) => {
     const productToUpdate = cartData?.data.find(
       (item) => item.product_id === productId
     );
-    console.log("productToUpdate", productToUpdate);
+    //console.log("productToUpdate", productToUpdate);
     if (productToUpdate.count === 1) {
       // const shouldRemove = confirm(
       //   "Are you sure you want to remove this item from the cart?"
       // );
       setShowModal(true);
-      console.log("confirm inside fun", confirm);
-      if (confirm) {
-        dispatch(removeFromCart(productToUpdate)); // Remove the product directly
-        // Remove the product from selectedCards
-        const updatedSelectedCards = { ...selectedCards };
-        delete updatedSelectedCards[productId];
-        setSelectedCards(updatedSelectedCards);
-      }
+      setProductIdToRemove(productId)
+      // console.log("confirm inside fun", confirm);
+
+setProductToRemove(productToUpdate)
+      // if (confirm) {
+      //   dispatch(removeFromCart(productToUpdate)); // Remove the product directly
+      //   // Remove the product from selectedCards
+      //   const updatedSelectedCards = { ...selectedCards };
+      //   delete updatedSelectedCards[productId];
+      //   setSelectedCards(updatedSelectedCards);
+      // }
     } else if (productToUpdate.count > 0) {
       dispatch(
         updateCartQuantity({
@@ -74,9 +84,9 @@ const Card = ({ productsData, cartData }) => {
     }
   };
 
-  // console.log(handleConfirm);
-  console.log("confirm", confirm);
-  // console.log(  selectedCards[item.product_id]);
+  // //console.log(handleConfirm);
+  // //console.log("confirm", confirm);
+  // //console.log(  selectedCards[item.product_id]);
   return (
     <>
       <Modal show={showModal} handleConfirm={handleConfirmRemove} />

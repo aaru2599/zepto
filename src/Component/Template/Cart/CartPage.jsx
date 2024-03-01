@@ -18,7 +18,7 @@ const CartPage = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
   const dispatch = useDispatch();
-  console.log("cartData.data", cartData.data.length);
+  //console.log("cartData.data", cartData.data.length);
 
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
@@ -33,13 +33,14 @@ const CartPage = () => {
   };
 
   return (
-    <div>
+    <div className="relative">
       <Modal show={showModal} handleConfirm={handleConfirmRemove} />
-      {cartData.data.length > 0 ? (
-        <div className="h-[100vh] relative"> 
-          <div className="mb-4 sticky top-0">
+      <div className="mb-4 sticky top-0">
             <CartHeader />
           </div>
+      {cartData.data.length > 0 ? (
+        <div className="h-[100vh] "> 
+        
           <div className="mx-auto sm:max-w-xl md:max-w-5xl md:max-h-screen">
             <div className="flex justify-between">
               <div className="flex">

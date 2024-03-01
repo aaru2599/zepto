@@ -13,7 +13,7 @@ const productsSlice=createSlice({
         getProductSuccess:(state,action)=>{
             state.isLoading=false,
             state.data=action.payload.result
-            //console.log("state.data",state.data);
+            ////console.log("state.data",state.data);
 
         },
         getProductFailed:(state)=>{

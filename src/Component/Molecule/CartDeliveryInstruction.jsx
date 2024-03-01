@@ -22,7 +22,7 @@ const CartDeliveryInstruction = () => {
       alt: "Return PET Bottles",
       src:"https://www.zeptonow.com/_next/image?url=https%3A%2F%2Fcdn.zeptonow.com%2Fapp%2Fimages%2Fno_contact_delivery.png%3Ftr%3Dw-150%2Cq-70&w=640&q=75",
       title: "Return PET Bottles",
-      description: "Help us recycle plastic bottles by returning them to our delivery partner An Initiative by",
+      description: "Recycle plastic bottles with our delivery partner! Join the initiative.",
       addImg:"https://www.zeptonow.com/_next/image?url=https%3A%2F%2Fcdn.zeptonow.com%2Fapp%2Fimages%2Fcoca_cola_logo.png%3Ftr%3Dw-150%2Cq-70&w=640&q=75",
     },
   ]
