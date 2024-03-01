@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardButton from "../Atoms/Button/CardButton";
 import AddToCard from "../Atoms/Button/AddToCard";
 import { Slide, ToastContainer, toast } from "react-toastify";
@@ -14,13 +14,21 @@ import Modal from "../Atoms/Modal/Modal";
 const Card = ({ productsData, cartData }) => {
   const [selectedCards, setSelectedCards] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [productIdToRemove,setProductIdToRemove]=useState(null)
-  const [productToRemove,setProductToRemove]=useState(null)
+  const [productIdToRemove, setProductIdToRemove] = useState(null);
+  const [productToRemove, setProductToRemove] = useState(null);
+  const [product, setProduct] = useState("");
 
   const dispatch = useDispatch();
 
-  //console.log("cartData", cartData);
-  //console.log("productsData", productsData);
+  useEffect(() => {
+    const initialSelectedCards = {};
+    cartData.data.forEach((item) => {
+      initialSelectedCards[item.product_id] = true;
+    });
+    setSelectedCards(initialSelectedCards);
+  }, [cartData]);
+  ////console.log("cartData", cartData);
+  ////console.log("productsData", productsData);
   const onAddToCart = (product) => {
     dispatch(addToCart(product));
     setSelectedCards({ ...selectedCards, [product.product_id]: true });
@@ -35,23 +43,25 @@ const Card = ({ productsData, cartData }) => {
       delete updatedSelectedCards[productIdToRemove];
       setSelectedCards(updatedSelectedCards);
     }
-    console.log("confirmed",confirmed);
+    //console.log("confirmed",confirmed);
   };
 
-  const onClickDecrease = (productId) => {
+  const onClickDecrease = (productIdData) => {
+    const productId = productIdData.product_id;
     const productToUpdate = cartData?.data.find(
       (item) => item.product_id === productId
     );
-    //console.log("productToUpdate", productToUpdate);
+    ////console.log("productToUpdate", productToUpdate);
     if (productToUpdate.count === 1) {
       // const shouldRemove = confirm(
       //   "Are you sure you want to remove this item from the cart?"
       // );
       setShowModal(true);
-      setProductIdToRemove(productId)
-      // console.log("confirm inside fun", confirm);
+      setProduct(productIdData.product_name);
+      setProductIdToRemove(productId);
+      // //console.log("confirm inside fun", confirm);
 
-setProductToRemove(productToUpdate)
+      setProductToRemove(productToUpdate);
       // if (confirm) {
       //   dispatch(removeFromCart(productToUpdate)); // Remove the product directly
       //   // Remove the product from selectedCards
@@ -84,12 +94,19 @@ setProductToRemove(productToUpdate)
     }
   };
 
-  // //console.log(handleConfirm);
-  // //console.log("confirm", confirm);
-  // //console.log(  selectedCards[item.product_id]);
+  console.log("productIdToRemove", productIdToRemove);
+  console.log("productToRemove", product);
+  // ////console.log("confirm", confirm);
+  // ////console.log(  selectedCards[item.product_id]);
+
   return (
     <>
-      <Modal show={showModal} handleConfirm={handleConfirmRemove} />
+      <Modal
+        product={product}
+        modalHeading={"Do you want to remove this product from cart..?"}
+        show={showModal}
+        handleConfirm={handleConfirmRemove}
+      />
       {productsData.products.map((item) => (
         <div
           key={item.product_id}
@@ -123,7 +140,7 @@ setProductToRemove(productToUpdate)
             </div>
             <div className="flex flex-col  p-2 ">
               <div className="flex flex-col  h-[4.3rem]">
-                <div className=" line-clamp-2 text-[13px] h-[2.5rem] font-[700] tracking-[0.02rem]">
+                <div className=" line-clamp-2  text-[13px] h-[2.5rem] font-[700] tracking-[0.02rem]">
                   {item.product_name}
                 </div>
                 <div className=" font-semibold rounded text-xs py-2 text-slate-600">
@@ -146,7 +163,7 @@ setProductToRemove(productToUpdate)
                     {" "}
                     <button
                       className="font-bold px-3 text-white border-r-2 text-[1rem] border-btnBorder"
-                      onClick={() => onClickDecrease(item.product_id)}
+                      onClick={() => onClickDecrease(item)}
                     >
                       -
                     </button>

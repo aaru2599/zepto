@@ -1,8 +1,8 @@
 const DeliveryButton = (props) => {
-  ////console.log("props", props);
+  //////console.log("props", props);
   const data = props.priceData;
   
-  ////console.log(data);
+  //////console.log(data);
 
   return (
     <>

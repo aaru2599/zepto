@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { updateCartQuantity } from "../Redux/Cart/CartSlice";
+import { removeFromCart, updateCartQuantity } from "../Redux/Cart/CartSlice";
 import { useEffect, useRef, useState } from "react";
 import Modal from "../Atoms/Modal/Modal";
 
 const CartProduct = (cartData) => {
   const [showModal, setShowModal] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
+  const [productName, setProductName] = useState("");
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const handleConfirmRemove = (confirmed) => {
@@ -43,19 +44,27 @@ const CartProduct = (cartData) => {
       );
     }
   };
-
- 
-
+  const handleRemoveBtn = (product) => {
+    setShowModal(true);
+    setProductIdToRemove(product.product_id);
+    setProductName(product.product_name);
+  };
+  //console.log("productName", productName);
   return (
     <>
-      <div className=" overflow-y-auto" >
-        <Modal show={showModal}  handleConfirm={handleConfirmRemove} />
+      <Modal
+        modalHeading={"Do you want to remove this  product from Cart.? "}
+        show={showModal}
+        product={productName}
+        handleConfirm={handleConfirmRemove}
+      />
+      <div className=" overflow-y-auto">
         <div className="px-4 rounded bg-white ">
           {cartData.cartData.data.map(
             (item) =>
               item.count > 0 && (
                 <div key={item.product_id} className="rounded ">
-                  <div className="flex justify-between border-b py-4">
+                  <div className="flex justify-between border-b  py-4">
                     <div className="flex gap-2 ">
                       <div>
                         <img
@@ -85,22 +94,38 @@ const CartProduct = (cartData) => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex h-[32px] items-center justify-between  bg-btnBack rounded-md ">
+                    <div className="flex flex-col items-center justify-between">
                       <button
-                        onClick={() => onClickDecrease(item.product_id)}
-                        className="font-bold px-3  text-white border-r-2 text-[1rem] border-btnBorder "
+                        onClick={() => handleRemoveBtn(item)}
+                        className="border border-btnBack text-btnBack px-2 p-1 rounded "
                       >
-                        -
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                        </svg>
                       </button>
-                      <div className="font-bold px-2 text-[1rem] text-white">
-                        {item.count}
+                      <div className="flex h-[32px] items-center border border-btnBack justify-between rounded-md ">
+                        <button
+                          onClick={() => onClickDecrease(item.product_id)}
+                          className="font-bold px-3  text-btnBack border-r text-[1rem] border-btnBack "
+                        >
+                          -
+                        </button>
+                        <div className="font-bold px-2 text-[1rem] text-btnBack">
+                          {item.count}
+                        </div>
+                        <button
+                          onClick={() => onIncrement(item.product_id)}
+                          className="font-bold px-3  border-l text-[1rem] text-btnBack border-btnBack"
+                        >
+                          +
+                        </button>
                       </div>
-                      <button
-                        onClick={() => onIncrement(item.product_id)}
-                        className="font-bold px-3  border-l-2 text-[1rem] text-white border-btnBorder"
-                      >
-                        +
-                      </button>
                     </div>
                   </div>
                 </div>

@@ -1,0 +1,4 @@
+.placeholder-text-custom::placeholder {
+    font-size: 12px; /* Change the font size to your desired value */
+    align-items: center;
+  }

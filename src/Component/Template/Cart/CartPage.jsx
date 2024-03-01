@@ -11,6 +11,7 @@ import { resetCartData } from "../../Redux/Cart/CartSlice";
 import CartEmptyPage from "../../Molecule/CartEmptyPage";
 import Modal from "../../Atoms/Modal/Modal";
 import { useState } from "react";
+import MainHeader from "../../Molecule/MainHeader";
 
 const CartPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +19,7 @@ const CartPage = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
   const dispatch = useDispatch();
-  //console.log("cartData.data", cartData.data.length);
+  ////console.log("cartData.data", cartData.data.length);
 
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
@@ -34,8 +35,9 @@ const CartPage = () => {
 
   return (
     <div className="relative">
-      <Modal show={showModal} handleConfirm={handleConfirmRemove} />
+      <Modal show={showModal} modalHeading={"Do you want to clear cart.?"} handleConfirm={handleConfirmRemove} />
       <div className="mb-4 sticky top-0">
+        <MainHeader cartData={cartData} logoImage={"https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.1/images/header/primary-logo.svg"} profile={"Profile"} widthVal={"950px"}/>
             <CartHeader />
           </div>
       {cartData.data.length > 0 ? (
