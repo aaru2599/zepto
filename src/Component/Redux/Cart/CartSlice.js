@@ -9,7 +9,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const myData = action.payload;
-      ////console.log("myData", myData);
+      //////console.log("myData", myData);
       const existingProductIndex = state.data.findIndex(
         (item) => item.product_id === myData.product_id
       );
@@ -22,20 +22,24 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action) => {
-      const productRemove = action.payload
-      const productIndex = state.data.findIndex((item) => item.product_id === productRemove.product_id)
+      const productRemove = action.payload;
+      const productIndex = state.data.findIndex(
+        (item) => item.product_id === productRemove.product_id
+      );
       if (productIndex !== -1) {
-          state.data.splice(productIndex, 1)
+        state.data.splice(productIndex, 1);
       }
-
-  },
+    },
+   
 
     resetCartData: (state) => {
-      state.data = []; 
+      state.data = [];
     },
     updateCartQuantity: (state, action) => {
       const { productId, quantity } = action.payload;
-      const productToUpdate = state.data.find((item) => item.product_id === productId);
+      const productToUpdate = state.data.find(
+        (item) => item.product_id === productId
+      );
       if (productToUpdate) {
         productToUpdate.count = quantity;
 
@@ -51,5 +55,6 @@ const cartSlice = createSlice({
     },
   },
 });
-export const { addToCart, removeFromCart, updateCartQuantity,resetCartData } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateCartQuantity, resetCartData } =
+  cartSlice.actions;
 export default cartSlice.reducer;

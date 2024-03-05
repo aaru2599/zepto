@@ -80,15 +80,27 @@ const ProductCategory = () => {
         "https://cdn.zeptonow.com/production///tr:w-90,ar-500-500,pr-true,f-auto,q-80/inventory/subcategory/2e442da2-9218-49c5-9875-41abdd9d2210-FNV.png",
     },
   ];
-
+  const [isBorder, setIsBorder] = useState(false);
+  const btnClick = (categoryId) => {
+    setIsBorder(categoryId);
+  };
+  //console.log("isBorder",isBorder);
   return (
     <div className="mb-[250px]">
       <div>
         {categoryData.map((item) => (
-          <div key={item.catId} className="p-1  ">
+          <div
+            key={item.catId}
+            onClick={() => btnClick(item.catId)}
+            className="p-1  "
+          >
             <div
               key={item.catId}
-              className={` flex w-[200px] h-[70px] border-black p-4 hover:bg-[#ffc4c4] hover:cursor-pointer items-center gap-2`}
+              className={` flex w-[200px] h-[60px] p-4 hover:bg-[#ebd9ff]  hover:hover:cursor-pointer items-center gap-2 ${
+                isBorder === item.catId
+                  ? " border-l-4 border-[#9e38ae] bg-gradient-to-r from-purple-100 to-purple-200 font-bold text-[#9e38ae] "
+                  : "border-l-4 border-transparent"
+              }`}
             >
               <div className=" bg-white rounded-full">
                 <img

@@ -19,7 +19,7 @@ const CartPage = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
   const dispatch = useDispatch();
-  ////console.log("cartData.data", cartData.data.length);
+  //////console.log("cartData.data", cartData.data.length);
 
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
@@ -35,14 +35,25 @@ const CartPage = () => {
 
   return (
     <div className="relative">
-      <Modal show={showModal} modalHeading={"Do you want to clear cart.?"} handleConfirm={handleConfirmRemove} />
+      <Modal
+        show={showModal}
+        modalHeading={"Do you want to clear cart.?"}
+        handleConfirm={handleConfirmRemove}
+      />
       <div className="mb-4 sticky top-0">
-        <MainHeader cartData={cartData} logoImage={"https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.1/images/header/primary-logo.svg"} profile={"Profile"} widthVal={"950px"}/>
-            <CartHeader />
-          </div>
+        <MainHeader
+          cartData={cartData}
+          address={false}
+          logoImage={
+            "https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.1/images/header/primary-logo.svg"
+          }
+          profile={"Profile"}
+          widthVal={"950px"}
+        />
+        <CartHeader />
+      </div>
       {cartData.data.length > 0 ? (
-        <div className="h-[100vh] "> 
-        
+        <div className="h-[100vh] ">
           <div className="mx-auto sm:max-w-xl md:max-w-5xl md:max-h-screen">
             <div className="flex justify-between">
               <div className="flex">

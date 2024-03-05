@@ -7,7 +7,7 @@ const Modal = ({ show, handleConfirm, modalHeading, product }) => {
     setIsVisible(show);
   }, [show]);
 
-  //console.log("product", product);
+  ////console.log("product", product);
   const modalClassName = isVisible
     ? "fixed inset-0 flex items-center justify-center z-50"
     : "hidden";
@@ -16,7 +16,8 @@ const Modal = ({ show, handleConfirm, modalHeading, product }) => {
     <div className={modalClassName}>
       <div className="fixed inset-0 bg-gray-500 opacity-75 "></div>
       <div className="bg-white w-[250px] md:w-2/6 p-8 rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out">
-        {product?<div><h2 className="text-lg font-semibold mb-4 line-clamp-2">Confirm </h2>
+      <h2 className="text-lg font-semibold mb-4 line-clamp-2">Please Confirm </h2>
+        {product?<div>
         <h4>Do you want to remove <span className="font-semibold text-green-600">"{product}"</span> from cart..?</h4></div>:<div className="font-semibold">{modalHeading}</div>}
 
         {/* <p></p> */}

@@ -27,8 +27,8 @@ const Card = ({ productsData, cartData }) => {
     });
     setSelectedCards(initialSelectedCards);
   }, [cartData]);
-  ////console.log("cartData", cartData);
-  ////console.log("productsData", productsData);
+  //////console.log("cartData", cartData);
+  //////console.log("productsData", productsData);
   const onAddToCart = (product) => {
     dispatch(addToCart(product));
     setSelectedCards({ ...selectedCards, [product.product_id]: true });
@@ -43,7 +43,7 @@ const Card = ({ productsData, cartData }) => {
       delete updatedSelectedCards[productIdToRemove];
       setSelectedCards(updatedSelectedCards);
     }
-    //console.log("confirmed",confirmed);
+    ////console.log("confirmed",confirmed);
   };
 
   const onClickDecrease = (productIdData) => {
@@ -51,7 +51,7 @@ const Card = ({ productsData, cartData }) => {
     const productToUpdate = cartData?.data.find(
       (item) => item.product_id === productId
     );
-    ////console.log("productToUpdate", productToUpdate);
+    //////console.log("productToUpdate", productToUpdate);
     if (productToUpdate.count === 1) {
       // const shouldRemove = confirm(
       //   "Are you sure you want to remove this item from the cart?"
@@ -59,7 +59,7 @@ const Card = ({ productsData, cartData }) => {
       setShowModal(true);
       setProduct(productIdData.product_name);
       setProductIdToRemove(productId);
-      // //console.log("confirm inside fun", confirm);
+      // ////console.log("confirm inside fun", confirm);
 
       setProductToRemove(productToUpdate);
       // if (confirm) {
@@ -94,10 +94,10 @@ const Card = ({ productsData, cartData }) => {
     }
   };
 
-  console.log("productIdToRemove", productIdToRemove);
-  console.log("productToRemove", product);
-  // ////console.log("confirm", confirm);
-  // ////console.log(  selectedCards[item.product_id]);
+  //console.log("productIdToRemove", productIdToRemove);
+  //console.log("productToRemove", product);
+  // //////console.log("confirm", confirm);
+  // //////console.log(  selectedCards[item.product_id]);
 
   return (
     <>

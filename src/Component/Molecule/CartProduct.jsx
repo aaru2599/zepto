@@ -11,21 +11,26 @@ const CartProduct = (cartData) => {
   const containerRef = useRef(null);
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
+    
     if (confirmed && productIdToRemove) {
+
       dispatch(
-        updateCartQuantity({ productId: productIdToRemove, quantity: 0 })
-      );
+        // updateCartQuantity({ productId: productIdToRemove, quantity: 0 })
+        removeFromCart(productIdToRemove)
+        );
     }
   };
 
-  const onClickDecrease = (productId) => {
+  const onClickDecrease = (productData) => {
+const productId=productData.product_id;
     const productToUpdate = cartData.cartData.data.find(
       (item) => item.product_id === productId
     );
 
     if (productToUpdate && productToUpdate.count === 1) {
       setShowModal(true);
-      setProductIdToRemove(productId);
+      setProductName(productData.product_name)
+      setProductIdToRemove(productData);
     } else if (productToUpdate && productToUpdate.count > 1) {
       // Dispatch updateCartQuantity without showing the modal
       dispatch(
@@ -46,10 +51,10 @@ const CartProduct = (cartData) => {
   };
   const handleRemoveBtn = (product) => {
     setShowModal(true);
-    setProductIdToRemove(product.product_id);
+    setProductIdToRemove(product);
     setProductName(product.product_name);
   };
-  //console.log("productName", productName);
+  ////console.log("productName", productName);
   return (
     <>
       <Modal
@@ -111,7 +116,7 @@ const CartProduct = (cartData) => {
                       </button>
                       <div className="flex h-[32px] items-center border border-btnBack justify-between rounded-md ">
                         <button
-                          onClick={() => onClickDecrease(item.product_id)}
+                          onClick={() => onClickDecrease(item)}
                           className="font-bold px-3  text-btnBack border-r text-[1rem] border-btnBack "
                         >
                           -

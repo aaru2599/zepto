@@ -5,10 +5,13 @@ import { Provider } from "react-redux";
 import store from "./Component/Redux/store.js";
 import { Slide, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import MapComponent from "./Component/Molecule/Location/MApComponent.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <App />
     <ToastContainer />
+      {/* <h1>Map Example</h1>
+      <MapComponent  /> */}
   </Provider>
 );
