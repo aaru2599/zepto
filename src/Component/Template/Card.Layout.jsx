@@ -12,7 +12,6 @@ const CardLayout = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
   //////console.log("cardDataCardLayout", cartData);
-  
 
   const [isLoading, setIsLoading] = useState(true);
   const [recent, setRecent] = useState([]);
@@ -38,15 +37,15 @@ const CardLayout = () => {
     setRecent(recentDataFromLocalStorage);
   }, []);
   const valArr = useSelector((state) => state.recent_search.data);
-  console.log("valArrvalArr",valArr);
+  console.log("valArrvalArr", valArr);
 
   const removeFromRecent = (itemToRemove) => {
-    dispatch(removeFromRecentSearch(itemToRemove))
+    dispatch(removeFromRecentSearch(itemToRemove));
   };
-  
+
   return (
     <div className="relative">
-      <div className="sticky top-0 z-50">
+      <div className=" sticky top-0 z-50">
         <MainHeader
           widthVal={"600px"}
           cart={"Cart"}
@@ -62,7 +61,7 @@ const CardLayout = () => {
           </div>
 
           <div
-            className="flex flex-col pt-3  overflow-scroll scrollable-data"
+            className="flex flex-col pt-3 w-[1050px]  overflow-scroll scrollable-data"
             // style={{ height: "100vh" }}
           >
             <div className="flex  items-center gap-3">
@@ -95,13 +94,13 @@ const CardLayout = () => {
                 </div>
               ))}
             </div>
-            <div className="text-[1.5rem] font-semibold tracking-[0.05rem] pt-4">
+            <div className="text-[1.5rem]  font-semibold tracking-[0.05rem] pt-4">
               Buy Fresh Fruits Online
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 py-4  justify-center">
               {/* Render the CardProto component passing productsData as props */}
               {isLoading ? (
-                "Loading"
+                "loading"
               ) : (
                 <Card productsData={productsData} cartData={cartData} />
               )}
