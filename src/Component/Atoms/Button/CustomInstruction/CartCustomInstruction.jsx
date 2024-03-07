@@ -1,8 +1,8 @@
 import "./CartCusIns.css";
 
 const CartCustomInstruction = ({ dataArray }) => {
-  //////console.log("dataArray",dataArray);
-  ////////console.log("data",data);
+  //////////console.log("dataArray",dataArray);
+  ////////////console.log("data",data);
   return (
     <div>
       <div className="flex justify-between scrollable-data overflow-hidden overflow-x-scroll ">
@@ -24,7 +24,7 @@ const CartCustomInstruction = ({ dataArray }) => {
                 {item.title}
               </p>
             </div>
-            {/* <div className="w-[11rem] text-left pl-2">
+            <div className="w-[11rem] text-left pl-2">
               <p className="text-[0.75rem] font-[400] text-gray-500 block font-norms typography_paragraph-small__Cqv9t   !text-2xs md:!text-xs !text-skin-primary-void/50 pt-1">
                 {item.description}
               </p>
@@ -46,7 +46,7 @@ const CartCustomInstruction = ({ dataArray }) => {
                   />
                 </div>
               )}
-            </div> */}
+            </div>
           </button>
         ))}
       </div>

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   data: [],
   locationData: "",
+  btnState: [],
 };
 const recentSlice = createSlice({
   name: "recent_search",
@@ -23,7 +24,19 @@ const recentSlice = createSlice({
         state.data.splice(productIndex, 1);
       }
     },
+    recentButton: (state, action) => {
+      const updatedBtnState = { ...state.btnState, ...action.payload };
+      state.btnState = updatedBtnState;
+      console.log("updatedBtnState",updatedBtnState);
+      localStorage.setItem("btnData", JSON.stringify(updatedBtnState)); // Update local storage
+
+    },
   },
 });
-export const { updateRecentSearch, updateLocation,removeFromRecentSearch } = recentSlice.actions;
+export const {
+  recentButton,
+  updateRecentSearch,
+  updateLocation,
+  removeFromRecentSearch,
+} = recentSlice.actions;
 export default recentSlice.reducer;

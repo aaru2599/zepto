@@ -54,8 +54,8 @@ const LocationModal = ({ show, handleConfirm, }) => {
 
     setAutocomplete(autocompleteInstance);
   };
-  // //console.log("selectedLocation", selectedLocation);
-  // //console.log("autocomplete", autocomplete);
+  // //////console.log("selectedLocation", selectedLocation);
+  // //////console.log("autocomplete", autocomplete);
   useEffect(() => {
     initialMapScript().then(() => initialAutoComplete());
   }, []);
@@ -73,15 +73,15 @@ const LocationModal = ({ show, handleConfirm, }) => {
     const addressString = selectedLocation
       ? selectedLocation.map((component) => component.long_name).join(", ")
       : "";
-      console.log("111addressString",addressString);
-    // //console.log("addressString", addressString);
+      ////console.log("111addressString",addressString);
+    // //////console.log("addressString", addressString);
     // handleLocationSelect(addressString);
     if (addressString) {
       dispatch(updateLocation(addressString))
       localStorage.setItem("locationData", addressString);
     }
   },[selectedLocation]);
-  // //console.log("inputSearch.current");
+  // //////console.log("inputSearch.current");
 
   
   return (

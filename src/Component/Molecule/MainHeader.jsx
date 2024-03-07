@@ -12,19 +12,19 @@ const MainHeader = ({
   profile,
   cart,
 }) => {
-  // //console.log("address",address);
+  // ////console.log("address",address);
 
   const [showModal, setShowModal] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const dispatch = useDispatch();
 
   const valueArray = useSelector((state) => state.recent_search.data);
-  console.log("valueArray", valueArray);
+  //console.log("valueArray", valueArray);
   const searchData = useSelector((state) => state.recent_search.locationData);
-  console.log("location", searchData);
+  //console.log("location", searchData);
   // Initialize with the value retrieved from local storage
   const cartCount = cartData.data.reduce((acc, curr) => acc + curr.count, 0);
-  //console.log("cartCount", cartCount);
+  ////console.log("cartCount", cartCount);
 
   const handleInput = (e) => {
     setInputVal(e.target.value);
@@ -38,8 +38,8 @@ const MainHeader = ({
   };
 
   const storedValue = localStorage.getItem("locationData");
-  //console.log("storedValue", storedValue);
-  // //console.log("selectedLocation", selectedLocation);
+  ////console.log("storedValue", storedValue);
+  // ////console.log("selectedLocation", selectedLocation);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -51,14 +51,14 @@ const MainHeader = ({
       localStorage.setItem("valueArray", JSON.stringify(updatedData));
     }
   };
-  //console.log("valueArray", valueArray);
+  ////console.log("valueArray", valueArray);
 
   return (
     <div>
       <div
-        className=" flex justify-center border-b border-gray-300"
+        className=" flex justify-center  border-b border-gray-300"
         style={{
-          background: "linear-gradient(rgb(255, 196, 196), rgb(247 247 247))",
+          background: "linear-gradient(rgb(255, 196, 196), rgb(255 255 255))",
         }}
       >
         <div

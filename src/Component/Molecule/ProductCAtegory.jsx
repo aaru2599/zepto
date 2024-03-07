@@ -84,7 +84,7 @@ const ProductCategory = () => {
   const btnClick = (categoryId) => {
     setIsBorder(categoryId);
   };
-  //console.log("isBorder",isBorder);
+  //////console.log("isBorder",isBorder);
   return (
     <div className="mb-[250px]">
       <div>

@@ -20,7 +20,7 @@ function App() {
       element:<div><AlertDialogDemo/></div>
     },{
       path:"cart",
-      element:<div><CartPage/></div>
+      element:<div className="bg-[#e9e9e9]"><CartPage/></div>
     }
   ])
   return (

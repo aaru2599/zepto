@@ -7,7 +7,7 @@ const Modal = ({ show, handleConfirm, modalHeading, product }) => {
     setIsVisible(show);
   }, [show]);
 
-  ////console.log("product", product);
+  ////////console.log("product", product);
   const modalClassName = isVisible
     ? "fixed inset-0 flex items-center justify-center z-50"
     : "hidden";
@@ -23,13 +23,13 @@ const Modal = ({ show, handleConfirm, modalHeading, product }) => {
         {/* <p></p> */}
         <div className=" mt-5 flex justify-between">
         <button
-            className=" font-bold py-2 px-4 rounded bg-btnBack hover:bg-btnHover text-gray-800 "
+            className=" font-bold py-2 px-4 rounded bg-[#ff32694f] hover:bg-[#ff326986]  text-btnBack "
             onClick={() => handleConfirm(false)}
           >
             No
           </button>
           <button
-            className=" font-bold py-2 px-4 rounded bg-gray-300 hover:bg-gray-400 text-gray-800 "
+            className=" font-bold py-2 px-4 rounded bg-gray-300 hover:bg-gray-400 text-gray-600 "
             onClick={() => handleConfirm(true)}
           >
             Yes

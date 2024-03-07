@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CardButton from "../Atoms/Button/CardButton";
 import AddToCard from "../Atoms/Button/AddToCard";
-import { Slide, ToastContainer, toast } from "react-toastify";
+import { Bounce, Slide, ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -9,66 +9,86 @@ import {
   updateCartQuantity,
 } from "../Redux/Cart/CartSlice";
 import Modal from "../Atoms/Modal/Modal";
+import { recentButton } from "../Atoms/Modal/recent.slice";
 // import Modal from "../Atoms/Modal/Modal";
 
-const Card = ({ productsData, cartData }) => {
+const Card = ({ productsData }) => {
   const [selectedCards, setSelectedCards] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
   const [productToRemove, setProductToRemove] = useState(null);
   const [product, setProduct] = useState("");
+  const cartData = JSON.parse(localStorage.getItem("selectCart")) || [];
 
   const dispatch = useDispatch();
 
+  // //console.log("myyycartDatacartDatacartDatacartData", myCartData);
   useEffect(() => {
-    const initialSelectedCards = {};
-    cartData.data.forEach((item) => {
-      initialSelectedCards[item.product_id] = true;
-    });
-    setSelectedCards(initialSelectedCards);
-  }, [cartData]);
-  //////console.log("cartData", cartData);
-  //////console.log("productsData", productsData);
+    const data = JSON.parse(localStorage.getItem("btnKey"));
+    if (data) {
+      setSelectedCards(data);
+    } else {
+      // Initialize selectedCards with counts from cartData
+      const initialSelectedCards = {};
+
+      cartData.forEach((item) => {
+        initialSelectedCards[item.product_id] = item.count > 0;
+      });
+      setSelectedCards(initialSelectedCards);
+      dispatch(recentButton(initialSelectedCards))
+      // localStorage.setItem("btnKey", JSON.stringify(initialSelectedCards));
+    }
+  }, []);
+
+  // //console.log("cartDatacartDatacartDatacartData", cartData);
+  // console.log("selectedCardsselectedCardsselectedCards", selectedCards);
+
   const onAddToCart = (product) => {
     dispatch(addToCart(product));
-    setSelectedCards({ ...selectedCards, [product.product_id]: true });
+    const updatedSelectedCards = {
+      ...selectedCards,
+      [product.product_id]: true,
+    };
+    console.log("updatedSelectedCards", updatedSelectedCards);
+    setSelectedCards(updatedSelectedCards);
+    dispatch(recentButton(updatedSelectedCards))
+    // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
+
+    const existingCartIndex = cartData.findIndex(
+      (item) => item.product_id === product.product_id
+    );
+    if (existingCartIndex !== -1) {
+      cartData[existingCartIndex].count += 1;
+    } else {
+      cartData.push({ ...product, count: 1 });
+    }
+    console.log("cartData", cartData);
+
+    // localStorage.setItem("selectCart", JSON.stringify(cartData));
+    console.log("product", product);
   };
+
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
-    // setConfirm(confirmed);
     if (confirmed) {
-      dispatch(removeFromCart(productToRemove)); // Remove the product directly
-      // Remove the product from selectedCards
+      dispatch(removeFromCart(productToRemove));
       const updatedSelectedCards = { ...selectedCards };
       delete updatedSelectedCards[productIdToRemove];
       setSelectedCards(updatedSelectedCards);
+      dispatch(recentButton(updatedSelectedCards))
+      // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
     }
-    ////console.log("confirmed",confirmed);
   };
-
   const onClickDecrease = (productIdData) => {
     const productId = productIdData.product_id;
-    const productToUpdate = cartData?.data.find(
+    const productToUpdate = cartData.find(
       (item) => item.product_id === productId
     );
-    //////console.log("productToUpdate", productToUpdate);
     if (productToUpdate.count === 1) {
-      // const shouldRemove = confirm(
-      //   "Are you sure you want to remove this item from the cart?"
-      // );
       setShowModal(true);
       setProduct(productIdData.product_name);
       setProductIdToRemove(productId);
-      // ////console.log("confirm inside fun", confirm);
-
       setProductToRemove(productToUpdate);
-      // if (confirm) {
-      //   dispatch(removeFromCart(productToUpdate)); // Remove the product directly
-      //   // Remove the product from selectedCards
-      //   const updatedSelectedCards = { ...selectedCards };
-      //   delete updatedSelectedCards[productId];
-      //   setSelectedCards(updatedSelectedCards);
-      // }
     } else if (productToUpdate.count > 0) {
       dispatch(
         updateCartQuantity({
@@ -80,24 +100,44 @@ const Card = ({ productsData, cartData }) => {
       const updatedSelectedCards = { ...selectedCards };
       delete updatedSelectedCards[productId];
       setSelectedCards(updatedSelectedCards);
+      dispatch(recentButton(updatedSelectedCards))
+      // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
+      localStorage.setItem("selectCart", JSON.stringify(productIdData));
     }
   };
 
   const onIncrement = (productId) => {
-    const productToUpdate = cartData?.data.find(
+    const productToUpdate = cartData.find(
       (item) => item.product_id === productId
     );
-    if (productToUpdate) {
+    if (productToUpdate && productToUpdate.count < 9) {
       dispatch(
         updateCartQuantity({ productId, quantity: productToUpdate.count + 1 })
       );
+      const updatedSelectedCards = { ...selectedCards };
+      updatedSelectedCards[productId] = true;
+      setSelectedCards(updatedSelectedCards);
+      dispatch(recentButton(updatedSelectedCards))
+      // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
+    } else {
+      toast.warn(
+        `Oops! You cant add more then ${productToUpdate.count} products at a time`,
+        {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          width: "500px",
+          transition: Bounce,
+        }
+      );
     }
   };
-
-  //console.log("productIdToRemove", productIdToRemove);
-  //console.log("productToRemove", product);
-  // //////console.log("confirm", confirm);
-  // //////console.log(  selectedCards[item.product_id]);
+  //console.log("product.data", productsData.products);
 
   return (
     <>
@@ -112,7 +152,7 @@ const Card = ({ productsData, cartData }) => {
           key={item.product_id}
           className="rounded-md bg-white transition duration-300 ease-in-out hover:cursor-pointer hover:shadow-sm"
         >
-          <div className="main_card w-[200px] flex flex-col ">
+          <div className="main_card  flex flex-col ">
             <div className="">
               <div className="flex justify-center border-b border-gray-50  items-center relative ">
                 <img
@@ -167,8 +207,8 @@ const Card = ({ productsData, cartData }) => {
                     >
                       -
                     </button>
-                    <div className="font-bold px-2 text-[1rem] text-white">
-                      {cartData?.data.find(
+                    <div className="font-bold  flex justify-center w-[30px] text-[14px] text-white">
+                      {cartData.find(
                         (cartItem) => cartItem.product_id === item.product_id
                       )?.count || 0}
                     </div>

@@ -9,6 +9,7 @@
     display: flex;
     overflow: clip;
     text-align: center;
+    z-index: 100;
 
     
 }

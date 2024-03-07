@@ -11,13 +11,13 @@ import { removeFromRecentSearch } from "../Atoms/Modal/recent.slice";
 const CardLayout = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
-  //////console.log("cardDataCardLayout", cartData);
+  //////////console.log("cardDataCardLayout", cartData);
 
-  const [isLoading, setIsLoading] = useState(true);
   const [recent, setRecent] = useState([]);
   const dispatch = useDispatch();
   // const searchData = useSelector((state) => state.recent_search.locationData);
-  // console.log("location", searchData);
+  // ////console.log("location", searchData);
+  const [isLoading, setIsLoading] = useState(true);
   const products = useSelector((state) => state.myProducts.data);
   const [productsData, setProductsData] = useState([]);
   useEffect(() => {
@@ -30,21 +30,22 @@ const CardLayout = () => {
       setProductsData(products);
     }
   }, [products]);
-  ////////console.log("productsData");
+  ////////////console.log("productsData");
   useEffect(() => {
     const recentDataFromLocalStorage =
       JSON.parse(localStorage.getItem("valueArray")) || [];
     setRecent(recentDataFromLocalStorage);
   }, []);
   const valArr = useSelector((state) => state.recent_search.data);
-  console.log("valArrvalArr", valArr);
+  
+  //console.log("valArrvalArr", valArr);
 
   const removeFromRecent = (itemToRemove) => {
     dispatch(removeFromRecentSearch(itemToRemove));
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <div className=" sticky top-0 z-50">
         <MainHeader
           widthVal={"600px"}
@@ -54,7 +55,7 @@ const CardLayout = () => {
           cartData={cartData}
         />
       </div>
-      <div className="flex justify-center" style={{ height: "100vh" }}>
+      <div className="flex justify-center bg-[#f5f1f7]" style={{ height: "100vh" }}>
         <div className="flex justify-center ">
           <div className="  overflow-scroll scrollable-data">
             <ProductCategory />

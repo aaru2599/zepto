@@ -29,7 +29,7 @@ const CartHeader = () => {
       </div> */}
       
       
-        <div className="cart-header " >
+        <div className="cart-header  " >
           <img
             src="https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.0/images/cart/delivery-banner-icon.svg"
             alt=""

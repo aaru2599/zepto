@@ -2,34 +2,34 @@ import { useDispatch } from "react-redux";
 import { removeFromCart, updateCartQuantity } from "../Redux/Cart/CartSlice";
 import { useEffect, useRef, useState } from "react";
 import Modal from "../Atoms/Modal/Modal";
+import { Bounce, toast } from "react-toastify";
 
 const CartProduct = (cartData) => {
   const [showModal, setShowModal] = useState(false);
   const [productIdToRemove, setProductIdToRemove] = useState(null);
   const [productName, setProductName] = useState("");
   const dispatch = useDispatch();
-  const containerRef = useRef(null);
+
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
-    
-    if (confirmed && productIdToRemove) {
 
+    if (confirmed && productIdToRemove) {
       dispatch(
         // updateCartQuantity({ productId: productIdToRemove, quantity: 0 })
         removeFromCart(productIdToRemove)
-        );
+      );
     }
   };
 
   const onClickDecrease = (productData) => {
-const productId=productData.product_id;
+    const productId = productData.product_id;
     const productToUpdate = cartData.cartData.data.find(
       (item) => item.product_id === productId
     );
 
     if (productToUpdate && productToUpdate.count === 1) {
       setShowModal(true);
-      setProductName(productData.product_name)
+      setProductName(productData.product_name);
       setProductIdToRemove(productData);
     } else if (productToUpdate && productToUpdate.count > 1) {
       // Dispatch updateCartQuantity without showing the modal
@@ -37,15 +37,32 @@ const productId=productData.product_id;
         updateCartQuantity({ productId, quantity: productToUpdate.count - 1 })
       );
     }
+
   };
 
   const onIncrement = (productId) => {
     const productToUpdate = cartData.cartData.data.find(
       (item) => item.product_id === productId
     );
-    if (productToUpdate) {
+    if (productToUpdate && productToUpdate.count < 9) {
       dispatch(
         updateCartQuantity({ productId, quantity: productToUpdate.count + 1 })
+      );
+    } else {
+      toast.warn(
+        `Oops! You cant add more then ${productToUpdate.count} products at a time`,
+        {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          width: "500px",
+          transition: Bounce,
+        }
       );
     }
   };
@@ -54,7 +71,7 @@ const productId=productData.product_id;
     setProductIdToRemove(product);
     setProductName(product.product_name);
   };
-  ////console.log("productName", productName);
+  ////////console.log("productName", productName);
   return (
     <>
       <Modal
@@ -81,10 +98,12 @@ const productId=productData.product_id;
                       <div className="flex flex-col gap-2">
                         <div>
                           <div className="text-[0.9375rem]">
-                            {item.product_name}{" "}
+                            {item.product_name}
                           </div>
-                          <div className="text-[0.8rem] text-gray-400 font-[400]">
-                            {item.product_qty}* {item.count}
+                          <div className="flex items-center gap-2  text-[0.8rem] text-gray-400 font-[400]">
+                            <div>{item.product_qty}</div>
+                            <div>x</div>
+                            <div>{item.count}</div>
                           </div>
                         </div>
                         <div className="flex gap-2">
@@ -99,10 +118,10 @@ const productId=productData.product_id;
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center justify-between">
+                    <div className="flex flex-col  items-end justify-between">
                       <button
                         onClick={() => handleRemoveBtn(item)}
-                        className="border border-btnBack text-btnBack px-2 p-1 rounded "
+                        className="border border-btnBack flex flex-end text-btnBack px-2 p-1 rounded "
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
