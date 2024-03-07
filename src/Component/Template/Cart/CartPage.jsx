@@ -30,7 +30,7 @@ const CartPage = () => {
     if (confirmed) {
       dispatch(resetCartData()); // Reset cart data only if user confirms
       localStorage.removeItem("selectCart");
-      dispatch(recentButton())
+      dispatch(recentButton());
     }
   };
 
@@ -38,6 +38,7 @@ const CartPage = () => {
     setShowModal(true);
   };
 
+  // console.log("CartPahe.cartDatacartDatacartData",cartData);
   return (
     <div className="relative bg-[#f5f1f7]">
       <Modal
@@ -55,7 +56,7 @@ const CartPage = () => {
           profile={"Profile"}
           widthVal={"950px"}
         />
-        <CartHeader />
+        {cartData.data.length > 0 && <CartHeader />}
       </div>
       <div className="bg-[#f5f1f7]">
         {cartData.data.length > 0 ? (
@@ -97,7 +98,7 @@ const CartPage = () => {
                     <CartProduct cartData={cartData} />
                   </div>
                   <CartDeliveryPartner />
-                  <SuggestionCard/>
+                  <SuggestionCard />
                   <CartDeliveryInstruction />
                   <CartDelSeftyInst />
                 </div>
