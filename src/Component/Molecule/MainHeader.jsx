@@ -12,19 +12,19 @@ const MainHeader = ({
   profile,
   cart,
 }) => {
-  // ////console.log("address",address);
-
   const [showModal, setShowModal] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const dispatch = useDispatch();
 
   const valueArray = useSelector((state) => state.recent_search.data);
-  //console.log("valueArray", valueArray);
-  const searchData = useSelector((state) => state.recent_search.locationData);
-  //console.log("location", searchData);
-  // Initialize with the value retrieved from local storage
   const cartCount = cartData.data.reduce((acc, curr) => acc + curr.count, 0);
   ////console.log("cartCount", cartCount);
+  const storedValue = localStorage.getItem("locationData");
+  useEffect(() => {
+    if (!storedValue) {
+      setShowModal(true);
+    }
+  }, []);
 
   const handleInput = (e) => {
     setInputVal(e.target.value);
@@ -37,35 +37,30 @@ const MainHeader = ({
     setShowModal(false);
   };
 
-  const storedValue = localStorage.getItem("locationData");
-  ////console.log("storedValue", storedValue);
-  // ////console.log("selectedLocation", selectedLocation);
-
   const submitForm = (e) => {
     e.preventDefault();
     if (inputVal.trim() !== "") {
-      const updatedData=[...valueArray, inputVal]
+      const updatedData = [...valueArray, inputVal];
       dispatch(updateRecentSearch(updatedData));
       setInputVal("");
-      
+
       localStorage.setItem("valueArray", JSON.stringify(updatedData));
     }
   };
-  ////console.log("valueArray", valueArray);
 
   return (
     <div>
       <div
-        className=" flex justify-center  border-b border-gray-300"
+        className=" flex justify-center border-b border-gray-300"
         style={{
-          background: "linear-gradient(rgb(255, 196, 196), rgb(255 255 255))",
+          background: "linear-gradient(rgb(255, 196, 196), rgb(245 241 247))",
         }}
       >
         <div
           style={{ width: "1200px" }}
-          className="flex justify-center gap-6    items-center py-4"
+          className="flex flex-col md:flex-row justify-center gap-6 items-center py-4"
         >
-          <Link to={"/"}>
+          <Link className="md:block hidden" to={"/"}>
             <img
               src="https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.1/images/header/primary-logo.svg"
               width={90}
@@ -74,37 +69,26 @@ const MainHeader = ({
             />
           </Link>
 
+          {/* Profile Link */}
+
+          {/* Address Section */}
           {address && (
-            <div className=" ">
+            <div className="mb-4 md:mb-0">
               <h4>Delivery in 8 Mins</h4>
-              <div className="flex ">
+              <div className="flex">
                 <div
                   className="w-[250px] truncate text-xs cursor-pointer"
                   onClick={handleLocation}
                 >
                   {storedValue ? storedValue : "Select Location"}
                 </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    viewBox="0 0 24 24"
-                    style={{ height: 16, width: 16 }}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                    ></path>
-                  </svg>
-                </div>
+                <div>{/* Arrow icon */}</div>
               </div>
             </div>
           )}
 
-          <form onSubmit={submitForm}>
+          {/* Search Input */}
+          <form onSubmit={submitForm} className="mb-4 md:mb-0">
             <div
               className="p-4 gap-3 bg-white flex items-center rounded"
               style={{ width: widthVal, height: "40px" }}
@@ -142,7 +126,7 @@ const MainHeader = ({
             </div>
           </form>
           {profile && (
-            <div>
+            <div className="mb-4 md:mb-0">
               <Link
                 to={""}
                 className="items-center flex-col flex justify-center "
@@ -180,12 +164,14 @@ const MainHeader = ({
               </Link>
             </div>
           )}
+          {/* Cart Link */}
           {cart && (
             <div>
               <Link to={"/cart"} className=" relative ">
+                {/* Cart icon */}
                 <img
                   src="https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.0/images/header/cart.svg"
-                  className=" "
+                  className=""
                   alt=""
                 />
                 <div>{cart}</div>
