@@ -70,7 +70,7 @@ const CartProduct = (cartData) => {
     setProductIdToRemove(product);
     setProductName(product.product_name);
   };
-  ////////console.log("productName", productName);
+  //////////console.log("productName", productName);
   return (
     <>
       <Modal

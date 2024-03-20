@@ -11,12 +11,12 @@ import { removeFromRecentSearch } from "../Atoms/Modal/recent.slice";
 const CardLayout = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
-  //////////console.log("cardDataCardLayout", cartData);
+  ////////////console.log("cardDataCardLayout", cartData);
 
   const [recent, setRecent] = useState([]);
   const dispatch = useDispatch();
   // const searchData = useSelector((state) => state.recent_search.locationData);
-  // ////console.log("location", searchData);
+  // //////console.log("location", searchData);
   const [isLoading, setIsLoading] = useState(true);
   const products = useSelector((state) => state.myProducts.data);
   const [productsData, setProductsData] = useState([]);
@@ -30,7 +30,7 @@ const CardLayout = () => {
       setProductsData(products);
     }
   }, [products]);
-  ////////////console.log("productsData");
+  //////////////console.log("productsData");
   useEffect(() => {
     const recentDataFromLocalStorage =
       JSON.parse(localStorage.getItem("valueArray")) || [];
@@ -38,7 +38,7 @@ const CardLayout = () => {
   }, []);
   const valArr = useSelector((state) => state.recent_search.data);
 
-  //console.log("valArrvalArr", valArr);
+  ////console.log("valArrvalArr", valArr);
 
   const removeFromRecent = (itemToRemove) => {
     dispatch(removeFromRecentSearch(itemToRemove));

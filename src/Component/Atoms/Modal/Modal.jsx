@@ -7,7 +7,7 @@ const Modal = ({ show, handleConfirm, modalHeading, product }) => {
     setIsVisible(show);
   }, [show]);
 
-  ////////console.log("product", product);
+  //////////console.log("product", product);
   const modalClassName = isVisible
     ? "fixed inset-0 flex items-center justify-center z-50"
     : "hidden";

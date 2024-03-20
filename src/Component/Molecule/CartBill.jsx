@@ -6,7 +6,7 @@ const CartBill = (cartData) => {
   const [delChrg, setDelChrg] = useState(25);
 
  
-  //////////console.log("cardDataBill", cartData.cartData.data);
+  ////////////console.log("cardDataBill", cartData.cartData.data);
   const tot_og_price = cartData.cartData.data.reduce(
     (acc, curr) => acc + Number(curr.product_og_price * curr.count),
     0
@@ -23,9 +23,9 @@ const CartBill = (cartData) => {
   if (tot_dis_price < 149) {
     totalBill = totalBill + delChrg;
   }
-  ////////console.log("totalBill",totalBill);
-  ////////console.log("totalPrice", tot_og_price);
-  ////////console.log("tot_dis_price", tot_dis_price);
+  //////////console.log("totalBill",totalBill);
+  //////////console.log("totalPrice", tot_og_price);
+  //////////console.log("tot_dis_price", tot_dis_price);
   return (
     <div className="px-4 py-6 bg-white rounded">
       <div>

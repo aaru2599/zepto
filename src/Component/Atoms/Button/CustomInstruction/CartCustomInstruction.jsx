@@ -1,8 +1,8 @@
 import "./CartCusIns.css";
 
 const CartCustomInstruction = ({ dataArray }) => {
-  //////////console.log("dataArray",dataArray);
-  ////////////console.log("data",data);
+  ////////////console.log("dataArray",dataArray);
+  //////////////console.log("data",data);
   return (
     <div>
       <div className="flex justify-between scrollable-data overflow-hidden overflow-x-scroll ">

@@ -24,7 +24,7 @@ const cartSlice = createSlice({
           existingData.count++;
         } else {
           // If count is already at MAX_COUNT, don't allow addition
-          //console.log("Cannot add more of this product, max limit reached.");
+          ////console.log("Cannot add more of this product, max limit reached.");
         }
       }
       localStorage.setItem("selectCart", JSON.stringify(state.data));

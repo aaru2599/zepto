@@ -15,12 +15,12 @@ const MainHeader = ({
   const [showModal, setShowModal] = useState(false);
   const [inputVal, setInputVal] = useState("");
   const [storedLoc, setStoredLoc] = useState("");
-  console.log("storedLoc", storedLoc);
+  //console.log("storedLoc", storedLoc);
   const dispatch = useDispatch();
 
   const valueArray = useSelector((state) => state.recent_search.data);
   const cartCount = cartData.data.reduce((acc, curr) => acc + curr.count, 0);
-  ////console.log("cartCount", cartCount);
+  //////console.log("cartCount", cartCount);
   const storedValue = localStorage.getItem("locationData");
   useEffect(() => {
     if (!storedValue) {

@@ -22,7 +22,7 @@ const CartPage = () => {
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
   const dispatch = useDispatch();
-  //////////console.log("cartData.data", cartData.data.length);
+  ////////////console.log("cartData.data", cartData.data.length);
 
   const handleConfirmRemove = (confirmed) => {
     setShowModal(false);
@@ -38,7 +38,7 @@ const CartPage = () => {
     setShowModal(true);
   };
 
-  // console.log("CartPahe.cartDatacartDatacartData",cartData);
+  // //console.log("CartPahe.cartDatacartDatacartData",cartData);
   return (
     <div className="relative bg-[#f5f1f7]">
       <Modal

@@ -12,7 +12,7 @@ const SuggestCardProtpo = ({ productData }) => {
     setSuggestions(suggestions.filter((item) => item.product_id !== product.product_id));
 
   };
-  console.log("suggestionssuggestionssuggestions",suggestions);
+  //console.log("suggestionssuggestionssuggestions",suggestions);
   return (
     <div>
       <div className="flex justify-between scrollable-data overflow-hidden overflow-x-scroll ">

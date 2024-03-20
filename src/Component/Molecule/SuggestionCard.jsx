@@ -10,7 +10,7 @@ const SuggestionCard = () => {
     const dispatch=useDispatch()
     const [isLoading, setIsLoading] = useState(true);
     const products = useSelector((state) => state.myProducts.data);
-    console.log("productsproducts",products);
+    //console.log("productsproducts",products);
     const [productsData, setProductsData] = useState([]);
     useEffect(() => {
       dispatch(getProduct());
@@ -22,7 +22,7 @@ const SuggestionCard = () => {
         setProductsData(products);
       }
     }, [products]);
-    console.log("productsDataproductsDataproductsData",productsData);
+    //console.log("productsDataproductsDataproductsData",productsData);
   return (
     <div className="bg-white rounded p-4 ">
       <div className="flex flex-col gap-4">

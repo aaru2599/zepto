@@ -27,7 +27,7 @@ const recentSlice = createSlice({
     recentButton: (state, action) => {
       const updatedBtnState = { ...state.btnState, ...action.payload };
       state.btnState = updatedBtnState;
-      console.log("updatedBtnState",updatedBtnState);
+      //console.log("updatedBtnState",updatedBtnState);
       localStorage.setItem("btnData", JSON.stringify(updatedBtnState)); // Update local storage
 
     },

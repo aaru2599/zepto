@@ -22,7 +22,7 @@ const Card = ({ productsData }) => {
 
   const dispatch = useDispatch();
 
-  // //console.log("myyycartDatacartDatacartDatacartData", myCartData);
+  // ////console.log("myyycartDatacartDatacartDatacartData", myCartData);
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("btnKey"));
     if (data) {
@@ -40,8 +40,8 @@ const Card = ({ productsData }) => {
     }
   }, []);
 
-  // //console.log("cartDatacartDatacartDatacartData", cartData);
-  // console.log("selectedCardsselectedCardsselectedCards", selectedCards);
+  // ////console.log("cartDatacartDatacartDatacartData", cartData);
+  // //console.log("selectedCardsselectedCardsselectedCards", selectedCards);
 
   const onAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -49,7 +49,7 @@ const Card = ({ productsData }) => {
       ...selectedCards,
       [product.product_id]: true,
     };
-    console.log("updatedSelectedCards", updatedSelectedCards);
+    //console.log("updatedSelectedCards", updatedSelectedCards);
     setSelectedCards(updatedSelectedCards);
     dispatch(recentButton(updatedSelectedCards));
     // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
@@ -62,10 +62,10 @@ const Card = ({ productsData }) => {
     } else {
       cartData.push({ ...product, count: 1 });
     }
-    console.log("cartData", cartData);
+    //console.log("cartData", cartData);
 
     // localStorage.setItem("selectCart", JSON.stringify(cartData));
-    console.log("product", product);
+    //console.log("product", product);
   };
 
   const handleConfirmRemove = (confirmed) => {
@@ -137,7 +137,7 @@ const Card = ({ productsData }) => {
       );
     }
   };
-  //console.log("product.data", productsData.products);
+  ////console.log("product.data", productsData.products);
 
   return (
     <>
