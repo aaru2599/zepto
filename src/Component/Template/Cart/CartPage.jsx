@@ -46,7 +46,7 @@ const CartPage = () => {
         modalHeading={"Do you want to clear cart.?"}
         handleConfirm={handleConfirmRemove}
       />
-      <div className="mb-4 sticky  top-0">
+      <div className="mb-4 md:block hidden sticky  top-0">
         <MainHeader
           cartData={cartData}
           address={false}
@@ -62,37 +62,60 @@ const CartPage = () => {
         {cartData.data.length > 0 ? (
           <div className="  ">
             <div className="mx-auto sm:max-w-xl md:max-w-5xl  ">
-              <div className="flex justify-between">
-                <div className="flex">
-                  <h3 className=" font-bold text-[1.2rem] font-norms    hidden mr-4 md:block">
-                    Cart ({cartData.data.length} Item)
-                  </h3>
-                  <div className="  bg-sky-100     ">
-                    <div className="flex justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
-                      <h5 className="block font-bold ">₹59.51</h5>
-                      <p className="block font-norms    pl-1">
-                        saved on this order
-                      </p>
-                    </div>
+              <div className="flex justify-between items-center md:p-0 p-2">
+                <div className="flex  ">
+                  <div className="flex items-center">
+                   <Link to={"/"} className="md:hidden block">
+                   <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      style={{ height: "1.5rem", width: "1.5rem" }}
+                      color="#000"
+                    >
+                      <path
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.5"
+                        d="M15.5 19l-7-7 7-7"
+                      ></path>
+                    </svg>  
+                   </Link>
+                    <h3 className=" font-bold text-[1.2rem] font-norms  mr-4 ">
+                      Cart ({cartData.data.length} Item)
+                    </h3>
+                  </div>
+
+                  <div className="hidden md:flex justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
+                    <h5 className="block font-bold ">₹59.51</h5>
+                    <p className="block font-norms    pl-1">
+                      saved on this order
+                    </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <button
                     onClick={onEmptyData}
-                    className="w-[95px] border  border-btnBack text-btnBack rounded-md font-semibold text-[0.9rem] h-[32px]  text-center"
+                    className="md:w-[95px] w-[60px] border  border-btnBack text-btnBack rounded md:rounded-md font-semibold md:text-[0.9rem] text-[0.6rem] md:h-[32px] p-1  text-center"
                   >
                     Empty Cart
                   </button>
                   <Link
                     to={"/"}
-                    className="w-[95px] flex justify-center items-center border bg-[#4c1577bf] border-[#4c1577bf] text-white rounded-md font-semibold text-[0.9rem] h-[32px]  text-center"
+                    className="p-1 md:w-[95px] w-[60px]  border bg-[#4c1577bf] border-[#4c1577bf] text-white rounded md:rounded-md font-semibold md:text-[0.9rem] text-[0.6rem] md:h-[32px]  text-center"
                   >
                     Add More
                   </Link>
                 </div>
               </div>
-
-              <div className=" flex justify-between gap-4 ">
+              <div className="md:hidden flex text-[12px] justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
+                <h5 className="block font-bold ">₹59.51</h5>
+                <p className="block font-norms    pl-1">saved on this order</p>
+              </div>
+              <div className=" flex justify-between md:flex-row flex-col gap-4 ">
                 <div className="md:w-[60%] md:mt-5   flex flex-col gap-4 ">
                   <div className="">
                     <CartProduct cartData={cartData} />

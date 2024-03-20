@@ -3,17 +3,16 @@ import { KEY } from "./key";
 import { useDispatch } from "react-redux";
 import { updateLocation } from "./recent.slice";
 
-const LocationModal = ({ show, handleConfirm, }) => {
+const LocationModal = ({ show, handleConfirm,handleLocationChange }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-
 
   const apiKey = KEY; // Replace with your Google Maps API key
   const mapApi = "https://maps.googleapis.com/maps/api/js";
 
   const inputSearch = useRef();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   function loadAsyncScript(src) {
     return new Promise((resolve) => {
@@ -44,46 +43,34 @@ const LocationModal = ({ show, handleConfirm, }) => {
     );
     autocompleteInstance.setFields(["address_component", "geometry"]);
 
-
     autocompleteInstance.addListener("place_changed", () => {
       const place = autocompleteInstance.getPlace();
       setSelectedLocation(place.address_components);
       setIsVisible(false);
-      handleConfirm()
+      handleConfirm();
     });
 
     setAutocomplete(autocompleteInstance);
   };
-  // //////console.log("selectedLocation", selectedLocation);
-  // //////console.log("autocomplete", autocomplete);
-  useEffect(() => {
-    initialMapScript().then(() => initialAutoComplete());
-  }, []);
-
-  useEffect(() => {
-    setIsVisible(show);
-  }, [show]);
+  
 
   const modalClassName = isVisible
     ? "fixed inset-0 flex items-center justify-center z-50"
     : "hidden";
 
-  // dispatch(setLocation(addressString));
   useEffect(() => {
+    initialMapScript().then(() => initialAutoComplete());
+    setIsVisible(show);
     const addressString = selectedLocation
       ? selectedLocation.map((component) => component.long_name).join(", ")
       : "";
-      ////console.log("111addressString",addressString);
-    // //////console.log("addressString", addressString);
-    // handleLocationSelect(addressString);
     if (addressString) {
-      dispatch(updateLocation(addressString))
+      dispatch(updateLocation(addressString));
       localStorage.setItem("locationData", addressString);
+      handleLocationChange(addressString);
     }
-  },[selectedLocation]);
-  // //////console.log("inputSearch.current");
+  }, [selectedLocation,show]);
 
-  
   return (
     <div className={modalClassName}>
       <div className="fixed inset-0 bg-gray-500 opacity-75 "></div>

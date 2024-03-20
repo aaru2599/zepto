@@ -45,7 +45,7 @@ const CardLayout = () => {
   };
 
   return (
-    <div className="relative ">
+    <div className="relative    ">
       <div className=" sticky top-0 z-50">
         <MainHeader
           widthVal={"600px"}
@@ -56,13 +56,13 @@ const CardLayout = () => {
         />
       </div>
       <div className="flex justify-center bg-[#f5f1f7]" style={{ height: "100vh" }}>
-        <div className="flex justify-center ">
-          <div className="  overflow-scroll scrollable-data">
+        <div className=" flex justify-center md:flex-row  " style={{maxWidth: "calc(100% - 2%)"}}>
+          <div className="  overflow-scroll scrollable-data  w-[19%]">
             <ProductCategory />
           </div>
 
           <div
-            className="flex flex-col pt-3 w-[1050px]  overflow-scroll scrollable-data"
+            className="flex flex-col pt-3   w-[81%] overflow-scroll scrollable-data"
             // style={{ height: "100vh" }}
           >
             <div className="flex  items-center gap-3">

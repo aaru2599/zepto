@@ -14,6 +14,8 @@ const MainHeader = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [inputVal, setInputVal] = useState("");
+  const [storedLoc, setStoredLoc] = useState("");
+  console.log("storedLoc", storedLoc);
   const dispatch = useDispatch();
 
   const valueArray = useSelector((state) => state.recent_search.data);
@@ -58,7 +60,7 @@ const MainHeader = ({
       >
         <div
           style={{ width: "1200px" }}
-          className="flex flex-col md:flex-row justify-center gap-6 items-center py-4"
+          className="md:flex md:justify-between flex   justify-center gap-6 items-center py-4"
         >
           <Link className="md:block hidden" to={"/"}>
             <img
@@ -75,20 +77,32 @@ const MainHeader = ({
           {address && (
             <div className="mb-4 md:mb-0">
               <h4>Delivery in 8 Mins</h4>
-              <div className="flex">
-                <div
-                  className="w-[250px] truncate text-xs cursor-pointer"
-                  onClick={handleLocation}
-                >
+              <div onClick={handleLocation} className="flex cursor-pointer">
+                <div className="w-[250px] truncate text-xs ">
                   {storedValue ? storedValue : "Select Location"}
                 </div>
-                <div>{/* Arrow icon */}</div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    viewBox="0 0 24 24"
+                    style={{ height: 16, width: 16 }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    ></path>
+                  </svg>
+                </div>
               </div>
             </div>
           )}
 
           {/* Search Input */}
-          <form onSubmit={submitForm} className="mb-4 md:mb-0">
+          <form onSubmit={submitForm} className="md:block hidden  ">
             <div
               className="p-4 gap-3 bg-white flex items-center rounded"
               style={{ width: widthVal, height: "40px" }}
@@ -126,7 +140,7 @@ const MainHeader = ({
             </div>
           </form>
           {profile && (
-            <div className="mb-4 md:mb-0">
+            <div className="mb-4 md:mb-0 md:block hidden">
               <Link
                 to={""}
                 className="items-center flex-col flex justify-center "
@@ -190,7 +204,11 @@ const MainHeader = ({
           )}
         </div>
       </div>
-      <LocationModal show={showModal} handleConfirm={handleConfirm} />
+      <LocationModal
+        show={showModal}
+        handleConfirm={handleConfirm}
+        handleLocationChange={(location) => setStoredLoc(location)}
+      />
     </div>
   );
 };

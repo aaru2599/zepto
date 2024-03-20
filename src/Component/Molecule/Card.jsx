@@ -35,7 +35,7 @@ const Card = ({ productsData }) => {
         initialSelectedCards[item.product_id] = item.count > 0;
       });
       setSelectedCards(initialSelectedCards);
-      dispatch(recentButton(initialSelectedCards))
+      dispatch(recentButton(initialSelectedCards));
       // localStorage.setItem("btnKey", JSON.stringify(initialSelectedCards));
     }
   }, []);
@@ -51,7 +51,7 @@ const Card = ({ productsData }) => {
     };
     console.log("updatedSelectedCards", updatedSelectedCards);
     setSelectedCards(updatedSelectedCards);
-    dispatch(recentButton(updatedSelectedCards))
+    dispatch(recentButton(updatedSelectedCards));
     // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
 
     const existingCartIndex = cartData.findIndex(
@@ -75,7 +75,7 @@ const Card = ({ productsData }) => {
       const updatedSelectedCards = { ...selectedCards };
       delete updatedSelectedCards[productIdToRemove];
       setSelectedCards(updatedSelectedCards);
-      dispatch(recentButton(updatedSelectedCards))
+      dispatch(recentButton(updatedSelectedCards));
       // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
     }
   };
@@ -100,7 +100,7 @@ const Card = ({ productsData }) => {
       const updatedSelectedCards = { ...selectedCards };
       delete updatedSelectedCards[productId];
       setSelectedCards(updatedSelectedCards);
-      dispatch(recentButton(updatedSelectedCards))
+      dispatch(recentButton(updatedSelectedCards));
       // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
       localStorage.setItem("selectCart", JSON.stringify(productIdData));
     }
@@ -117,7 +117,7 @@ const Card = ({ productsData }) => {
       const updatedSelectedCards = { ...selectedCards };
       updatedSelectedCards[productId] = true;
       setSelectedCards(updatedSelectedCards);
-      dispatch(recentButton(updatedSelectedCards))
+      dispatch(recentButton(updatedSelectedCards));
       // localStorage.setItem("btnKey", JSON.stringify(updatedSelectedCards));
     } else {
       toast.warn(
@@ -156,8 +156,8 @@ const Card = ({ productsData }) => {
             <div className="">
               <div className="flex justify-center border-b border-gray-50  items-center relative ">
                 <img
-                  className="rounded-t-md"
-                  style={{ width: "100%", height: "195px", objectFit: "cover" }}
+                  className="rounded-t-md md:h-[200px]"
+                  style={{ width: "100%", objectFit: "cover" }}
                   src={item.product_img}
                   alt=""
                 />
@@ -178,19 +178,19 @@ const Card = ({ productsData }) => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col  p-2 ">
-              <div className="flex flex-col  h-[4.3rem]">
-                <div className=" line-clamp-2  text-[13px] h-[2.5rem] font-[700] tracking-[0.02rem]">
+            <div className="md:flex md:flex-col  p-2 ">
+              <div className="flex flex-col  md:h-[4.3rem]">
+                <div className=" line-clamp-2 text-[10px] md:text-[13px] h-[2rem] md:h-[2.5rem] font-[700] tracking-[0.02rem]">
                   {item.product_name}
                 </div>
-                <div className=" font-semibold rounded text-xs py-2 text-slate-600">
+                <div className=" font-semibold rounded md:text-xs py-2 text-slate-600 text-[10px]">
                   {item.product_qty}
                 </div>
               </div>
-              <div className="flex justify-between items-center">
-                <div className="flex gap-2 items-center">
+              <div className="flex   justify-between items-center">
+                <div className="flex md:gap-2 gap-1 text-[10px] items-center">
                   {item.product_og_price > 0 && (
-                    <div className="text-xs text-slate-600 line-through">
+                    <div className="md:text-xs text-[10px] text-slate-600 line-through">
                       &#8377;{item.product_og_price}
                     </div>
                   )}
@@ -199,21 +199,21 @@ const Card = ({ productsData }) => {
                   </div>
                 </div>
                 {selectedCards[item.product_id] ? (
-                  <div className="flex h-[32px] items-center justify-between bg-btnBack rounded-md ">
+                  <div className="flex  md:text-[14px] text-[10px] md:h-[32px] h-[24px] md:w-[95px] w-[58px] text-center    items-center justify-between bg-btnBack md:rounded-md rounded ">
                     {" "}
                     <button
-                      className="font-bold px-3 text-white border-r-2 text-[1rem] border-btnBorder"
+                      className="font-bold md:px-3 px-2 text-white border-r-2  border-btnBorder"
                       onClick={() => onClickDecrease(item)}
                     >
                       -
                     </button>
-                    <div className="font-bold  flex justify-center w-[30px] text-[14px] text-white">
+                    <div className="font-bold  flex justify-center md:w-[30px]   text-white">
                       {cartData.find(
                         (cartItem) => cartItem.product_id === item.product_id
                       )?.count || 0}
                     </div>
                     <button
-                      className="font-bold px-3 border-l-2 text-[1rem] text-white border-btnBorder"
+                      className="font-bold md:px-3 px-2 border-l-2  text-center text-white border-btnBorder"
                       onClick={() => onIncrement(item.product_id)}
                     >
                       +
@@ -221,7 +221,7 @@ const Card = ({ productsData }) => {
                   </div>
                 ) : (
                   <button
-                    className="w-[95px] border border-btnBack text-btnBack rounded-md font-semibold text-[0.9rem] h-[32px]  text-center"
+                    className="md:w-[95px] px-1 w-[58px] h-[24px] border border-btnBack text-btnBack rounded md:rounded-md md:font-semibold md:text-[0.9rem] text-[0.6rem] md:h-[32px]  text-center "
                     onClick={() => onAddToCart(item)}
                   >
                     Add to cart

@@ -7,27 +7,23 @@ import AlertDialogDemo from "./Component/Atoms/Modal/Modal";
 import ProductCategory from "./Component/Molecule/ProductCAtegory";
 
 function App() {
-  const router=createBrowserRouter([
+  const router = createBrowserRouter([
     {
-      path:"/",
-      element:<CardLayout/>
-    },{
-      path:"cat",
-      element:<ProductCategory/>
-    }
-    ,{
-      path:"modal",
-      element:<div><AlertDialogDemo/></div>
-    },{
-      path:"cart",
-      element:<div className="bg-[#e9e9e9]"><CartPage/></div>
-    }
-  ])
+      path: "/",
+      element: <CardLayout />,
+    },
+    {
+      path: "cart",
+      element: (
+        <div className="bg-[#e9e9e9]">
+          <CartPage />
+        </div>
+      ),
+    },
+  ]);
   return (
     <>
-      
-        <RouterProvider router={router}/>
-      
+      <RouterProvider router={router} />
     </>
   );
 }

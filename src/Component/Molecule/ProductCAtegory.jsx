@@ -87,35 +87,33 @@ const ProductCategory = () => {
   //////console.log("isBorder",isBorder);
   return (
     <div className="mb-[250px]">
-      <div>
-        {categoryData.map((item) => (
+      {categoryData.map((item) => (
+        <div
+          key={item.catId}
+          onClick={() => btnClick(item.catId)}
+          className="md:p-1 border-r "
+        >
           <div
             key={item.catId}
-            onClick={() => btnClick(item.catId)}
-            className="p-1  "
+            className={`flex flex-col  items-center md:flex md:flex-row   md:justify-start  justify-center  h-[60px]  md:p-4 hover:bg-[#ebd9ff]  hover:hover:cursor-pointer md:items-center md:gap-2 md:${
+              isBorder === item.catId
+                ? " md:border-l-4 border-[#9e38ae] bg-gradient-to-r from-purple-100 to-purple-200 font-bold text-[#9e38ae] "
+                : " md:border-l-4 border-transparent"
+            }`}
           >
-            <div
-              key={item.catId}
-              className={` flex w-[200px] h-[60px] p-4 hover:bg-[#ebd9ff]  hover:hover:cursor-pointer items-center gap-2 ${
-                isBorder === item.catId
-                  ? " border-l-4 border-[#9e38ae] bg-gradient-to-r from-purple-100 to-purple-200 font-bold text-[#9e38ae] "
-                  : "border-l-4 border-transparent"
-              }`}
-            >
-              <div className=" bg-white rounded-full">
-                <img
-                  src={item.catImage}
-                  className="rounded-full"
-                  height={40}
-                  width={40}
-                  alt=""
-                />
-              </div>
-              <div className="w-32 text-[14px]">{item.catName}</div>
-            </div>
+            
+             <div>
+             <img
+                src={item.catImage}
+                className="rounded-full md:w-[40px] md:h-[40px] w-[24px] h-[24px] bg-white "
+               
+                alt=""
+              />
+             </div>
+            <div className="text-[8px] md:w-32  md:text-[14px] text-center md:text-left ">{item.catName}</div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
