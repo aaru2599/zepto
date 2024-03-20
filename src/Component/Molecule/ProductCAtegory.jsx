@@ -95,7 +95,7 @@ const ProductCategory = () => {
         >
           <div
             key={item.catId}
-            className={` flex flex-col  items-center md:flex md:flex-row  my-4 md:justify-start  justify-center  h-[60px]  md:p-4 hover:bg-[#ebd9ff]  hover:hover:cursor-pointer md:items-center md:gap-2 md:${
+            className={` flex flex-col  items-center md:flex md:flex-row mb-4  md:mb-0 md:justify-start  justify-center  h-[60px]  md:p-4 hover:bg-[#ebd9ff]  hover:hover:cursor-pointer md:items-center md:gap-2 md:${
               isBorder === item.catId
                 ? " md:border-l-4 border-[#9e38ae] bg-gradient-to-r from-purple-100 to-purple-200 font-bold text-[#9e38ae] "
                 : " md:border-l-4 border-transparent"
