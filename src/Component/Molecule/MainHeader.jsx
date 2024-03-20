@@ -53,14 +53,14 @@ const MainHeader = ({
   return (
     <div>
       <div
-        className=" flex justify-center border-b border-gray-300"
+        className=" flex md:justify-center justify-between border-b border-gray-300"
         style={{
           background: "linear-gradient(rgb(255, 196, 196), rgb(245 241 247))",
         }}
       >
         <div
           style={{ width: "1200px" }}
-          className="md:flex md:justify-between flex   justify-center gap-6 items-center py-4"
+          className="md:flex md:justify-between flex   justify-center gap-10 items-center py-2"
         >
           <Link className="md:block hidden" to={"/"}>
             <img
