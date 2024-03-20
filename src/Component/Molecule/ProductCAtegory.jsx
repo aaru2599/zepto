@@ -105,12 +105,12 @@ const ProductCategory = () => {
              <div>
              <img
                 src={item.catImage}
-                className="rounded-full md:w-[40px] md:h-[40px] w-[24px] h-[24px] bg-white "
+                className="rounded-full md:w-[40px] md:h-[40px] w-[35px] h-[35px] bg-white "
                
                 alt=""
               />
              </div>
-            <div className="text-[8px] md:w-32  md:text-[14px] text-center md:text-left ">{item.catName}</div>
+            <div className="text-[10px] md:w-32  md:text-[14px] text-center md:text-left ">{item.catName}</div>
           </div>
         </div>
       ))}
