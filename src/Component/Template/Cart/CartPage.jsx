@@ -65,25 +65,25 @@ const CartPage = () => {
               <div className="flex justify-between items-center md:p-0 p-2">
                 <div className="flex  ">
                   <div className="flex items-center">
-                   <Link to={"/"} className="md:hidden block">
-                   <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      style={{ height: "1.5rem", width: "1.5rem" }}
-                      color="#000"
-                    >
-                      <path
-                        stroke="#000"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        d="M15.5 19l-7-7 7-7"
-                      ></path>
-                    </svg>  
-                   </Link>
+                    <Link to={"/"} className="md:hidden block">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        style={{ height: "1.5rem", width: "1.5rem" }}
+                        color="#000"
+                      >
+                        <path
+                          stroke="#000"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2.5"
+                          d="M15.5 19l-7-7 7-7"
+                        ></path>
+                      </svg>
+                    </Link>
                     <h3 className=" font-bold text-[1.2rem] font-norms  mr-4 ">
                       Cart ({cartData.data.length} Item)
                     </h3>

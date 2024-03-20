@@ -207,7 +207,7 @@ const Card = ({ productsData }) => {
                     >
                       -
                     </button>
-                    <div className="font-bold  flex justify-center md:w-[30px]   text-white">
+                    <div className="font-bold md:py-0 px-1 flex justify-center md:w-[30px]   text-white">
                       {cartData.find(
                         (cartItem) => cartItem.product_id === item.product_id
                       )?.count || 0}
