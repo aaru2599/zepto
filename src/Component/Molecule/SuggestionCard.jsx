@@ -27,7 +27,7 @@ const SuggestionCard = () => {
     <div className="bg-white rounded p-4 ">
       <div className="flex flex-col gap-4">
         <div>
-          <div className="text-[0.875rem] font-bold">Add More</div>
+          <div className="text-[0.875rem] font-bold">You Might Have Missed</div>
         </div>
         <div>
             {

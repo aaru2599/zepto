@@ -53,7 +53,7 @@ const MainHeader = ({
   return (
     <div>
       <div
-        className=" flex md:justify-center justify-between border-b border-gray-300"
+        className=" flex md:justify-center justify-between border-b md:p-2 border-gray-300"
         style={{
           background: "linear-gradient(rgb(255, 196, 196), rgb(245 241 247))",
         }}

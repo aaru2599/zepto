@@ -8,7 +8,7 @@ const CartDelSeftyInst = () => {
         height={50}
         alt="" />
       </div>
-        <h5 className="block font-norms typography_h6__CNPkk md:!text-md md:!font-title">
+        <h5 className=" block font-norms typography_h6__CNPkk md:!text-md md:!font-title">
           See how we ensure our delivery partner’s safety
           <span className="text-btnBack font-semibold cursor-pointer pl-1">
             Learn more

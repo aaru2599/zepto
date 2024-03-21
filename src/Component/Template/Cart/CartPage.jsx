@@ -117,18 +117,48 @@ const CartPage = () => {
               </div>
               <div className=" flex justify-between md:flex-row flex-col gap-4 ">
                 <div className="md:w-[60%] md:mt-5   flex flex-col gap-4 ">
-                  <div className="">
-                    <CartProduct cartData={cartData} />
+                  <CartProduct cartData={cartData} />
+                  <div className="block md:hidden">
+                    <SuggestionCard />
                   </div>
-                  <CartDeliveryPartner />
-                  <SuggestionCard />
+                  <div className="block md:hidden">
+                    <CartOffer />
+                  </div>
+                  <div className="md:hidden block">
+                    <CartDeliveryPartner />
+                  </div>
+                  <div className="block md:hidden">
+                    <CartBill cartData={cartData} />
+                  </div>
+                  <div className="block md:hidden">
                   <CartDeliveryInstruction />
+                  </div>
+
+                  <div className="md:block hidden">
+                    <SuggestionCard />
+                  </div>
+
+                  <div className="md:block hidden">
+                    <CartDeliveryPartner />
+                  </div>
+
+                 <div className="md:block hidden">
+                 <CartDeliveryInstruction />
+                 </div>
+                  <div className="md:mb-0 mb-[160px]">
                   <CartDelSeftyInst />
+                  </div>
                 </div>
                 <div className="md:w-[40%] flex flex-col gap-4 md:mt-5">
-                  <CartOffer />
-                  <CartBill cartData={cartData} />
+                  <div className="md:block hidden">
+                    <CartOffer />
+                  </div>
+                  <div className="md:block hidden ">
+                    <CartBill cartData={cartData} />
+                  </div>
+                  <div className=" md:static fixed bottom-0 left-0 w-full">
                   <CartAddress />
+                  </div>
                 </div>
               </div>
             </div>
