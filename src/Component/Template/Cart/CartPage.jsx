@@ -169,7 +169,7 @@ const CartPage = () => {
                   <div className="md:block hidden ">
                     <CartBill cartData={cartData} />
                   </div>
-                  <div className=" md:static fixed bottom-0 left-0 w-full">
+                  <div className=" md:static shadow rounded-lg fixed bottom-0 left-0 w-full">
                     <CartAddress />
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 const CartAddress = () => {
   return (
-    <div className="bg-white p-4 rounded">
+    <div className="bg-white p-4  rounded-lg md:shadow-none border-t shadow-md md:rounded">
       <div className="flex flex-col gap-3">
         <div className="flex justify-center items-center">
           <div>
