@@ -6,7 +6,7 @@ const CartOffer = () => {
       <div className="  h-16 flex items-center cursor-default px-4  ">
         <div className="">
           <div className="!text-sm !font-body  ">
-            <img src="/src/assets/percent.png" alt="" />
+            <img src="assets/percent.png" alt="" />
           </div>
         </div>
         <div className="flex justify-between w-full items-center cursor-pointer">
@@ -14,7 +14,7 @@ const CartOffer = () => {
             Avail Offers / Coupons
           </p>
         </div>
-      <div ><img src="/src/assets/Pause.png" alt="" /></div>
+      <div ><img src="assets/Pause.png" alt="" /></div>
       </div>
       
     </div>
