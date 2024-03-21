@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { json } from "react-router-dom";
 
 const CartBill = (cartData) => {
   const [smCartFee, setSmCartFee] = useState(35);
   const [handlingCharge, setHandlingCharge] = useState(5.49);
   const [delChrg, setDelChrg] = useState(25);
 
- 
   ////////////console.log("cardDataBill", cartData.cartData.data);
   const tot_og_price = cartData.cartData.data.reduce(
     (acc, curr) => acc + Number(curr.product_og_price * curr.count),
@@ -23,7 +23,10 @@ const CartBill = (cartData) => {
   if (tot_dis_price < 149) {
     totalBill = totalBill + delChrg;
   }
-  //////////console.log("totalBill",totalBill);
+
+  let savedMoney = tot_og_price - (totalBill - 50);
+  localStorage.setItem("saved-money", JSON.stringify(savedMoney));
+
   //////////console.log("totalPrice", tot_og_price);
   //////////console.log("tot_dis_price", tot_dis_price);
   return (
@@ -113,7 +116,9 @@ const CartBill = (cartData) => {
             </div>
             <div className="flex justify-between">
               <div>To Pay</div>
-              <div className="font-[700]">&#8377;{(totalBill-50).toFixed(2)}</div>
+              <div className="font-[700]">
+                &#8377;{(totalBill - 50).toFixed(2)}
+              </div>
             </div>
           </div>
         </div>

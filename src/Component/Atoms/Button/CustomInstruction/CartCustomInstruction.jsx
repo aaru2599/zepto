@@ -9,7 +9,7 @@ const CartCustomInstruction = ({ dataArray }) => {
         {dataArray.map((item, index) => (
           <button
             key={index}
-            className="mr-2 rounded-lg border border-skin-muted/50 flex flex-col w-fit p-2 false"
+            className="focus:bg-[#4c15771a] mr-2 rounded-lg border border-skin-muted/50 flex flex-col w-fit p-2 false"
           >
             <div className="flex">
               <img
@@ -29,8 +29,8 @@ const CartCustomInstruction = ({ dataArray }) => {
                 {item.description}
               </p>
               {item.addImg && (
-                <div className="flex  mt-2">
-                  <p className="block font-norms typography_paragraph-small__Cqv9t   !text-2xs md:!text-xs !text-skin-primary-void/50">
+                <div className="flex  items-center">
+                  <p className="block md:text-[0.8125rem] text-[0.75rem] md:font-normal font-[400] md:text-black text-gray-500">
                     An Initiative by
                   </p>
                   <img
