@@ -39,9 +39,9 @@ const CartPage = () => {
     setShowModal(true);
   };
 
-  const jsonData=JSON.parse(localStorage.getItem("saved-money"));
+  const jsonData = JSON.parse(localStorage.getItem("saved-money"));
 
- // //console.log("CartPahe.cartDatacartDatacartData",cartData);
+  // //console.log("CartPahe.cartDatacartDatacartData",cartData);
   return (
     <div className="relative bg-[#f5f1f7]">
       <Modal
@@ -92,12 +92,18 @@ const CartPage = () => {
                     </h3>
                   </div>
 
-                  <div className="hidden md:flex justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
-                    <h5 className="block font-bold ">₹{jsonData.toFixed()}</h5>
-                    <p className="block font-norms    pl-1">
-                      saved on this order
-                    </p>
-                  </div>
+                  {jsonData > 0 && jsonData !== undefined ? (
+                    <div className="hidden md:flex justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
+                      <h5 className="block font-bold ">
+                        ₹{jsonData.toFixed()}
+                      </h5>
+                      <p className="block font-norms    pl-1">
+                        saved on this order
+                      </p>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="flex gap-2">
                   <button
@@ -114,10 +120,14 @@ const CartPage = () => {
                   </Link>
                 </div>
               </div>
-              <div className="md:hidden flex text-[12px] justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
+             {
+              jsonData > 0 && jsonData !== undefined?(
+                <div className="md:hidden flex text-[12px] justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
                 <h5 className="block font-bold ">₹{jsonData.toFixed()}</h5>
                 <p className="block font-norms    pl-1">saved on this order</p>
               </div>
+              ):""
+             }
               <div className=" flex justify-between md:flex-row flex-col gap-4 ">
                 <div className="md:w-[60%] md:mt-5   flex flex-col gap-4 ">
                   <CartProduct cartData={cartData} />
@@ -134,7 +144,7 @@ const CartPage = () => {
                     <CartBill cartData={cartData} />
                   </div>
                   <div className="block md:hidden">
-                  <CartDeliveryInstruction />
+                    <CartDeliveryInstruction />
                   </div>
 
                   <div className="md:block hidden">
@@ -145,11 +155,11 @@ const CartPage = () => {
                     <CartDeliveryPartner />
                   </div>
 
-                 <div className="md:block hidden">
-                 <CartDeliveryInstruction />
-                 </div>
+                  <div className="md:block hidden">
+                    <CartDeliveryInstruction />
+                  </div>
                   <div className="md:mb-0 mb-[160px]">
-                  <CartDelSeftyInst />
+                    <CartDelSeftyInst />
                   </div>
                 </div>
                 <div className="md:w-[40%] flex flex-col gap-4 md:mt-5">
@@ -160,7 +170,7 @@ const CartPage = () => {
                     <CartBill cartData={cartData} />
                   </div>
                   <div className=" md:static fixed bottom-0 left-0 w-full">
-                  <CartAddress />
+                    <CartAddress />
                   </div>
                 </div>
               </div>
