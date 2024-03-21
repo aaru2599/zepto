@@ -19,7 +19,7 @@ const SuggestCardProtpo = ({ productData }) => {
         {suggestions.map((item, index) => (
           <div
             key={index}
-            className="mr-2   rounded-lg border w-[150px] border-skin-muted/50 flex flex-col  p-2 false"
+            className="mr-2   rounded-lg border md:w-[150px] w-[120px] border-skin-muted/50 flex flex-col  p-2 false"
           >
             <div className="flex justify-center items-center">
               <img
@@ -31,7 +31,7 @@ const SuggestCardProtpo = ({ productData }) => {
                 // style={{ color: "transparent", objectFit: "contain" }}
               />
             </div>
-            <p className="line-clamp-2 py-2 h-[45px] w-[150px] text-[0.7125rem] font-semibold ">
+            <p className="line-clamp-2 py-2 h-[45px] md:w-[150px] w-[100px]   text-[0.7125rem] font-semibold ">
               {item.product_name}
             </p>
             {/* <div className="w-[11rem] text-left pl-2"> */}

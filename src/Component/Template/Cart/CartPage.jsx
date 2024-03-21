@@ -12,7 +12,7 @@ import CartEmptyPage from "../../Molecule/CartEmptyPage";
 import Modal from "../../Atoms/Modal/Modal";
 import { useState } from "react";
 import MainHeader from "../../Molecule/MainHeader";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import SuggestionCard from "../../Molecule/SuggestionCard";
 import { recentButton } from "../../Atoms/Modal/recent.slice";
 import { useEffect } from "react";
@@ -20,6 +20,7 @@ import { useEffect } from "react";
 const CartPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [confirm, setConfirm] = useState(true);
+  // const [jsonData, SetSavedMoney] = useState(0);
   const cartList = useSelector((state) => state.myCart);
   const cartData = cartList;
   const dispatch = useDispatch();
@@ -39,8 +40,8 @@ const CartPage = () => {
     setShowModal(true);
   };
 
-  const jsonData = JSON.parse(localStorage.getItem("saved-money"));
-
+    const jsonData = JSON.parse(localStorage.getItem("saved-money"))
+    // SetSavedMoney(jsonData);
   // //console.log("CartPahe.cartDatacartDatacartData",cartData);
   return (
     <div className="relative bg-[#f5f1f7]">
@@ -65,7 +66,7 @@ const CartPage = () => {
         {cartData.data.length > 0 ? (
           <div className="  ">
             <div className="mx-auto sm:max-w-xl md:max-w-5xl  ">
-              <div className="flex justify-between items-center md:p-0 p-2">
+              <div className="flex justify-between items-center md:p-0 p-2 md:bg-transparent bg-white md:static sticky top-0">
                 <div className="flex  ">
                   <div className="flex items-center">
                     <Link to={"/"} className="md:hidden block">
@@ -120,14 +121,16 @@ const CartPage = () => {
                   </Link>
                 </div>
               </div>
-             {
-              jsonData > 0 && jsonData !== undefined?(
-                <div className="md:hidden flex text-[12px] justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
-                <h5 className="block font-bold ">₹{jsonData.toFixed()}</h5>
-                <p className="block font-norms    pl-1">saved on this order</p>
-              </div>
-              ):""
-             }
+              {jsonData > 0 && jsonData !== undefined ? (
+                <div className="md:hidden flex text-[12px] my-2 justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
+                  <h5 className="block font-bold ">₹{jsonData.toFixed()}</h5>
+                  <p className="block font-norms    pl-1">
+                    saved on this order
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
               <div className=" flex justify-between md:flex-row flex-col gap-4 ">
                 <div className="md:w-[60%] md:mt-5   flex flex-col gap-4 ">
                   <CartProduct cartData={cartData} />
