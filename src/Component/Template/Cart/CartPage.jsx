@@ -39,7 +39,7 @@ const CartPage = () => {
     setShowModal(true);
   };
 
-  const jsonData=JSON.parse(localStorage.getItem("saved-money")).toFixed();
+  const jsonData=JSON.parse(localStorage.getItem("saved-money"));
 
  // //console.log("CartPahe.cartDatacartDatacartData",cartData);
   return (
@@ -93,7 +93,7 @@ const CartPage = () => {
                   </div>
 
                   <div className="hidden md:flex justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
-                    <h5 className="block font-bold ">₹{jsonData}</h5>
+                    <h5 className="block font-bold ">₹{jsonData.toFixed()}</h5>
                     <p className="block font-norms    pl-1">
                       saved on this order
                     </p>
@@ -115,7 +115,7 @@ const CartPage = () => {
                 </div>
               </div>
               <div className="md:hidden flex text-[12px] justify-center items-center bg-[#daf4e5] py-2 px-10 md:rounded md:py-1">
-                <h5 className="block font-bold ">₹{jsonData}</h5>
+                <h5 className="block font-bold ">₹{jsonData.toFixed()}</h5>
                 <p className="block font-norms    pl-1">saved on this order</p>
               </div>
               <div className=" flex justify-between md:flex-row flex-col gap-4 ">
