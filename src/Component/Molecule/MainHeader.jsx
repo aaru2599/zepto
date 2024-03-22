@@ -60,13 +60,13 @@ const MainHeader = ({
       >
         <div
           style={{ width: "1200px" }}
-          className="md:flex md:justify-between flex     justify-center gap-5  md:gap-10 items-center md:py-4"
+          className="md:flex md:justify-between flex     justify-center gap-5  items-center md:py-4"
         >
           <Link className="md:block hidden" to={"/"}>
             <img
               src="https://cdn.zeptonow.com/web-static-assets-prod/artifacts/9.1.1/images/header/primary-logo.svg"
-              className="md:w-[90px] md:h-[30px] w-[40px] h-[15px]"
-             
+              height={50}
+              width={90}
               alt=""
             />
           </Link>
@@ -76,7 +76,9 @@ const MainHeader = ({
           {/* Address Section */}
           {address && (
             <div className="mb-4 md:mb-0">
-              <h4>Delivery in <span className="font-semibold">8 Mins</span></h4>
+              <h4>
+                Delivery in <span className="font-semibold">8 Mins</span>
+              </h4>
               <div onClick={handleLocation} className="flex cursor-pointer">
                 <div className="w-[250px] truncate text-xs ">
                   {storedValue ? storedValue : "Select Location"}
