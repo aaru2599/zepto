@@ -3,7 +3,7 @@ import { KEY } from "./key";
 import { useDispatch } from "react-redux";
 import { updateLocation } from "./recent.slice";
 
-const LocationModal = ({ show, handleConfirm,handleLocationChange }) => {
+const LocationModal = ({ show, handleConfirm, handleLocationChange }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
@@ -52,7 +52,6 @@ const LocationModal = ({ show, handleConfirm,handleLocationChange }) => {
 
     setAutocomplete(autocompleteInstance);
   };
-  
 
   const modalClassName = isVisible
     ? "fixed inset-0 flex items-center justify-center z-50"
@@ -69,18 +68,36 @@ const LocationModal = ({ show, handleConfirm,handleLocationChange }) => {
       localStorage.setItem("locationData", addressString);
       handleLocationChange(addressString);
     }
-  }, [selectedLocation,show]);
+  }, [selectedLocation, show]);
 
   return (
     <div className={modalClassName}>
       <div className="fixed inset-0 bg-gray-500 opacity-75 "></div>
-      <div className="bg-white h-[50vh] w-[37rem] rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out">
+      <div className="bg-white md:h-[50vh] md:w-[37rem] h-full w-full rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out">
         <div className="flex justify-between items-center p-2 border-b ">
-          <div></div>
+          <button onClick={handleConfirm} className="md:hidden block">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              style={{ height: "1.25rem", width: "1.25rem" }}
+              color="#000"
+            >
+              <path
+                stroke="#000"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2.5"
+                d="M15.5 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
           <div className="text-[14px] font-semibold tracking-[0.085rem]">
             Your Location
           </div>
-          <button onClick={handleConfirm}>
+          <button className="md:block invisible" onClick={handleConfirm}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
