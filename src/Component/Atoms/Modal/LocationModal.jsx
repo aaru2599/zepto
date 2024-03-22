@@ -73,9 +73,9 @@ const LocationModal = ({ show, handleConfirm, handleLocationChange }) => {
   return (
     <div className={modalClassName}>
       <div className="fixed inset-0 bg-gray-500 opacity-75 "></div>
-      <div className="bg-white md:h-[50vh] md:w-[37rem] h-full w-full rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out">
+      <div className="bg-white md:h-[50vh] md:w-[37rem] h-full w-full md:rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out">
         <div className="flex justify-between items-center p-2 border-b ">
-          <button onClick={handleConfirm} className="md:hidden block">
+          <button onClick={handleConfirm} className="md:invisible block">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -94,10 +94,11 @@ const LocationModal = ({ show, handleConfirm, handleLocationChange }) => {
               ></path>
             </svg>
           </button>
-          <div className="text-[14px] font-semibold tracking-[0.085rem]">
+          <div className="text-[14px] text-center font-semibold tracking-[0.085rem]">
             Your Location
           </div>
-          <button className="md:block invisible" onClick={handleConfirm}>
+          <button className="hidden md:flex" onClick={handleConfirm}>
+          
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -114,6 +115,7 @@ const LocationModal = ({ show, handleConfirm, handleLocationChange }) => {
               ></path>
             </svg>
           </button>
+          <div className="block md:hidden"></div>
         </div>
 
         <div className="w-[100%] p-4 flex flex-col gap-[20px]">
