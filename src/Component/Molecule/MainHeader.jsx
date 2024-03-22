@@ -53,14 +53,14 @@ const MainHeader = ({
   return (
     <div>
       <div
-        className=" flex md:justify-center justify-between border-b md:p-2 border-gray-300"
+        className=" flex md:justify-center justify-between border-b md:p-2 p-2 border-gray-300"
         style={{
           background: "linear-gradient(rgb(255, 196, 196), rgb(245 241 247))",
         }}
       >
         <div
           style={{ width: "1200px" }}
-          className="md:flex md:justify-between flex   justify-center gap-5  md:gap-10 items-center md:py-4"
+          className="md:flex md:justify-between flex     justify-center gap-5  md:gap-10 items-center md:py-4"
         >
           <Link className="md:block hidden" to={"/"}>
             <img
@@ -104,8 +104,7 @@ const MainHeader = ({
           {/* Search Input */}
           <form onSubmit={submitForm} className="md:block hidden  ">
             <div
-              className="p-4 gap-3 bg-white flex items-center rounded"
-              style={{ width: widthVal, height: "40px" }}
+              className={`p-4 gap-3 bg-white flex items-center rounded  md:w-[${widthVal}] h-[40px]`}
             >
               <div>
                 <svg
