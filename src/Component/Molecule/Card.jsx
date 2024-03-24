@@ -156,7 +156,7 @@ const Card = ({ productsData }) => {
             <div className="">
               <div className="flex justify-center border-b border-gray-50  items-center relative ">
                 <img
-                  className="rounded-t-md md:h-[200px]"
+                  className="rounded-t-md h-[125px]  md:h-[200px]"
                   style={{ width: "100%", objectFit: "cover" }}
                   src={item.product_img}
                   alt=""
@@ -183,7 +183,7 @@ const Card = ({ productsData }) => {
                 <div className=" line-clamp-2 text-[10px] md:text-[13px] h-[2rem] md:h-[2.5rem] font-[700] tracking-[0.02rem]">
                   {item.product_name}
                 </div>
-                <div className=" font-semibold rounded md:text-xs py-2 text-slate-600 text-[10px]">
+                <div className=" font-semibold truncate rounded md:text-xs py-2 text-slate-600 text-[10px]">
                   {item.product_qty}
                 </div>
               </div>

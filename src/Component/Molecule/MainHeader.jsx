@@ -106,7 +106,7 @@ const MainHeader = ({
           {/* Search Input */}
           <form onSubmit={submitForm} className="md:block hidden  ">
             <div
-              className={`p-4 gap-3 bg-white flex items-center rounded  md:w-[${widthVal}] h-[40px]`}
+              className={`p-4 gap-3 bg-white flex items-center rounded w-[650px] md:w-[${widthVal}] h-[40px]`}
             >
               <div>
                 <svg
@@ -132,11 +132,11 @@ const MainHeader = ({
               </div>
               <input
                 type="text"
-                className="rounded outline-none placeholder-text-custom"
+                className={`rounded outline-none  md:w-[${widthVal}]  placeholder-text-custom`}
                 value={inputVal}
                 onChange={handleInput}
                 placeholder="Search for"
-                style={{ width: widthVal }}
+                // style={{ width: widthVal }}
               />
             </div>
           </form>
